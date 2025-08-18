@@ -1,13 +1,14 @@
 "use client";
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import React, { Fragment } from 'react';
 import LocalizedClientLink from '@modules/common/components/localized-client-link';
 import X from '@modules/common/icons/x';
+import ChevronDown from '@modules/common/icons/chevron-down';
 
 type SidebarNavProps = {
   isOpen: boolean;
   close: () => void;
-  navItems: string[];
+  navItems: { title: string; children?: string[] }[];
 };
 
 const SidebarNav = ({ isOpen, close, navItems }: SidebarNavProps) => {
@@ -49,18 +50,56 @@ const SidebarNav = ({ isOpen, close, navItems }: SidebarNavProps) => {
                 <nav>
                   <ul className="flex flex-col gap-y-4">
                     {navItems.map((item) => (
-                      <li key={item}>
-                        <LocalizedClientLink
-                          href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                          className="text-lg text-gray-700 hover:text-black"
-                          onClick={close}
-                        >
-                          <span
-                            style={item === 'SALE' ? { color: 'rgb(202, 32, 34)' } : {}}
+                      <li key={item.title}>
+                        {!item.children ? (
+                          <LocalizedClientLink
+                            href={`/${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                            className="text-lg text-gray-700 hover:text-black"
+                            onClick={close}
                           >
-                            {item}
-                          </span>
-                        </LocalizedClientLink>
+                            <span style={item.title === 'SALE' ? { color: 'rgb(202, 32, 34)' } : {}}>
+                              {item.title}
+                            </span>
+                          </LocalizedClientLink>
+                        ) : (
+                          <Disclosure as="div">
+                            {({ open }) => (
+                              <>
+                                <Disclosure.Button className="flex items-center justify-between w-full text-lg text-gray-700 hover:text-black">
+                                  <span style={item.title === 'SALE' ? { color: 'rgb(202, 32, 34)' } : {}}>
+                                    {item.title}
+                                  </span>
+                                  <ChevronDown
+                                    size={20}
+                                    className={`transition-transform duration-200 ${open ? 'transform rotate-180' : ''}`}
+                                  />
+                                </Disclosure.Button>
+                                <Transition
+                                  enter="transition duration-100 ease-out"
+                                  enterFrom="transform scale-95 opacity-0"
+                                  enterTo="transform scale-100 opacity-100"
+                                  leave="transition duration-75 ease-out"
+                                  leaveFrom="transform scale-100 opacity-100"
+                                  leaveTo="transform scale-95 opacity-0"
+                                >
+                                  <Disclosure.Panel as="ul" className="pl-4 pt-2 space-y-2">
+                                    {item.children?.map((child) => (
+                                      <li key={child}>
+                                        <LocalizedClientLink
+                                          href={`/${child.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                                          className="text-gray-600 hover:text-black"
+                                          onClick={close}
+                                        >
+                                          {child}
+                                        </LocalizedClientLink>
+                                      </li>
+                                    ))}
+                                  </Disclosure.Panel>
+                                </Transition>
+                              </>
+                            )}
+                          </Disclosure>
+                        )}
                       </li>
                     ))}
                   </ul>

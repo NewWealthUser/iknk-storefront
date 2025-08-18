@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import LocalizedClientLink from '@modules/common/components/localized-client-link';
-import SidebarNav from '../sidebar-nav/index';
+import SidebarNav from '../sidebar-nav';
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -31,15 +31,26 @@ const Header = () => {
   const logoFill = isHovered ? 'black' : 'white';
 
   const navItems = [
-    "Shop By Room",
-    "Tables",
-    "Seating",
-    "Lounging",
-    "Umbrellas",
-    "Accessories",
-    "Materials",
-    "SALE",
-    "Ikonik"
+    {
+      title: "Shop By Room",
+      children: [
+        "Living Room", "Dining Room", "Outdoor Lounge", "Patio / Poolside",
+        "Bar & Café", "Balcony & Compact Spaces", "Entertaining Spaces", "Reading Nook"
+      ]
+    },
+    {
+      title: "Tables",
+      children: [
+        "Dining Tables", "Coffee Tables", "Side Tables", "Café Tables", "Bar Tables", "Table Covers"
+      ]
+    },
+    { title: "Seating" },
+    { title: "Lounging" },
+    { title: "Umbrellas" },
+    { title: "Accessories" },
+    { title: "Materials" },
+    { title: "SALE" },
+    { title: "Ikonik" }
   ];
 
   return (
@@ -148,17 +159,35 @@ const Header = () => {
             <div className="jss20 hidden md:block">
               <ul className="flex flex-wrap justify-center gap-x-8 p-0 my-0" role="menubar" aria-label="Main">
                 {navItems.map((item) => (
-                  <div key={item} className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                    <button type="button" className="p-0 text-black">
-                      <span className="p-0 flex items-end" style={{ lineHeight: 'inherit' }}>
-                        <span
-                          className="uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base"
-                          style={item === 'SALE' ? { ...navLinkStyle, color: 'rgb(202, 32, 34)' } : navLinkStyle}
-                        >
-                          {item}
+                  <div key={item.title} className="relative group">
+                    <div className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
+                      <button type="button" className="p-0 text-black">
+                        <span className="p-0 flex items-end" style={{ lineHeight: 'inherit' }}>
+                          <span
+                            className="uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base"
+                            style={item.title === 'SALE' ? { ...navLinkStyle, color: 'rgb(202, 32, 34)' } : navLinkStyle}
+                          >
+                            {item.title}
+                          </span>
                         </span>
-                      </span>
-                    </button>
+                      </button>
+                    </div>
+                    {item.children && (
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max hidden group-hover:block bg-white text-black p-4 rounded-md shadow-lg z-50">
+                        <ul className="space-y-2">
+                          {item.children.map((child) => (
+                            <li key={child}>
+                              <LocalizedClientLink
+                                href={`/${child.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                                className="block text-sm text-gray-700 hover:text-black hover:bg-gray-100 p-2 rounded"
+                              >
+                                {child}
+                              </LocalizedClientLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 ))}
               </ul>
