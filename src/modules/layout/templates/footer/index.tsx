@@ -30,7 +30,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="jss4539 jss4540">
-              <div className="MuiGrid-root MuiGrid-container MuiGrid-justify-content-xs-space-between jss4542">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
                   <div className="jss4543">
                     <p className="MuiTypography-root MuiTypography-body1 jss4548 jss4550 jss4538 css-1cnrszw">RESOURCES</p>
