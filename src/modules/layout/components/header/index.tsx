@@ -28,6 +28,18 @@ const Header = () => {
 
   const logoFill = isHovered ? 'black' : 'white';
 
+  const navItems = [
+    "Shop By Room",
+    "Tables",
+    "Seating",
+    "Lounging",
+    "Umbrellas",
+    "Accessories",
+    "Materials",
+    "SALE",
+    "Ikonik"
+  ];
+
   return (
     <header
       onMouseEnter={() => setIsHovered(true)}
@@ -132,93 +144,20 @@ const Header = () => {
           </div>
           <div className="jss20">
             <ul className="flex flex-nowrap justify-between p-0 my-0" role="menubar" aria-label="Main">
-              <div data-navigation-account-item-id="cat160024" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:rt:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss751 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>Living</span>
-                  </span>
-                </button>
-              </div>
-              <div data-navigation-account-item-id="cat1840042" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:ru:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss752 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>Dining</span>
-                  </span>
-                </button>
-              </div>
-              <div data-navigation-account-item-id="cat32450013" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:rv:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss753 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>Bed</span>
-                  </span>
-                </button>
-              </div>
-              <div data-navigation-account-item-id="cat160092" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r10:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss754 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>Bath</span>
-                  </span>
-                </button>
-              </div>
-              <div data-navigation-account-item-id="cat180003" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r11:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss755 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>Outdoor</span>
-                  </span>
-                </button>
-              </div>
-              <div data-navigation-account-item-id="cat160075" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r12:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss756 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>Lighting</span>
-                  </span>
-                </button>
-              </div>
-              <div data-navigation-account-item-id="cat9750013" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r13:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss757 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>Textiles</span>
-                  </span>
-                </button>
-              </div>
-              <div data-navigation-account-item-id="cat1535014" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r14:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss758 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>Rugs</span>
-                  </span>
-                </button>
-              </div>
-              <div data-navigation-account-item-id="cat1630014" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r15:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss759 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>Décor</span>
-                  </span>
-                </button>
-              </div>
-              <div data-navigation-account-item-id="cat26600024" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <a href="https://rhbabyandchild.rh.com/us/en/" target="_blank" className="jss760 flex items-end">
-                  <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>BABY &amp; CHILD</span>
-                </a>
-              </div>
-              <div data-navigation-account-item-id="cat26600023" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <a href="https://rhteen.rh.com/us/en/" target="_blank" className="jss761 flex items-end">
-                  <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>TEEN</span>
-                </a>
-              </div>
-              <div data-navigation-account-item-id="Sale" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r16:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss702 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={{ color: 'rgb(202, 32, 34)', lineHeight: '1.75rem' }}>SALE</span>
-                  </span>
-                </button>
-              </div>
-              <div data-navigation-account-item-id="cat28610168" className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                <button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r17:" data-state="closed" className="p-0 text-black data-[state=open]:underline">
-                  <span className="p-0 jss762 flex items-end" style={{ lineHeight: 'inherit' }}>
-                    <span className="tailwind-typography-root uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base tailwind-typography-caption" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography" style={navLinkStyle}>Interior Design</span>
-                  </span>
-                </button>
-              </div>
+              {navItems.map((item) => (
+                <div key={item} className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
+                  <button type="button" className="p-0 text-black">
+                    <span className="p-0 flex items-end" style={{ lineHeight: 'inherit' }}>
+                      <span
+                        className="uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base"
+                        style={item === 'SALE' ? { ...navLinkStyle, color: 'rgb(202, 32, 34)' } : navLinkStyle}
+                      >
+                        {item}
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              ))}
             </ul>
           </div>
         </div>
