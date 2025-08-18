@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import LocalizedClientLink from '@modules/common/components/localized-client-link';
 
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -101,15 +102,17 @@ const Header = () => {
                         <path d="M12.1699 6.75L8.16992 10.75L4.16992 6.75" stroke="currentColor" strokeWidth="0.75"></path>
                       </svg>
                     </button>
-                    <div className="MuiGrid-root MuiGrid-item flex" style={iconAndTextStyle}>
-                      <button className="p-0" style={iconAndTextStyle}>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="">
-                          <path d="M5.37543 19.4979H19.2354V14.5083C19.2354 13.2544 18.2189 12.2379 16.965 12.2379H7.64581C6.39192 12.2379 5.37543 13.2544 5.37543 14.5083V19.4979Z" stroke="currentColor" strokeWidth="0.75"></path>
-                          <path d="M15.5601 6.63C15.5601 8.42769 14.1028 9.885 12.3051 9.885C10.5074 9.885 9.05011 8.42769 9.05011 6.63C9.05011 4.83231 10.5074 3.375 12.3051 3.375C14.1028 3.375 15.5601 4.83231 15.5601 6.63Z" stroke="currentColor" strokeWidth="0.75"></path>
-                        </svg>
-                      </button>
-                    </div>
-                    <a className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone flex items-end css-1bklnqp" id="container-rhrHeader_cart-btn" href="/us/en/checkout/shopping_cart.jsp" data-analytics-id="link" aria-label="0 Items in Cart" data-ctaname="0 Items in Cart">
+                    <LocalizedClientLink href="/account" style={iconAndTextStyle}>
+                      <div className="MuiGrid-root MuiGrid-item flex">
+                        <button className="p-0" style={iconAndTextStyle}>
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="">
+                            <path d="M5.37543 19.4979H19.2354V14.5083C19.2354 13.2544 18.2189 12.2379 16.965 12.2379H7.64581C6.39192 12.2379 5.37543 13.2544 5.37543 14.5083V19.4979Z" stroke="currentColor" strokeWidth="0.75"></path>
+                            <path d="M15.5601 6.63C15.5601 8.42769 14.1028 9.885 12.3051 9.885C10.5074 9.885 9.05011 8.42769 9.05011 6.63C9.05011 4.83231 10.5074 3.375 12.3051 3.375C14.1028 3.375 15.5601 4.83231 15.5601 6.63Z" stroke="currentColor" strokeWidth="0.75"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </LocalizedClientLink>
+                    <LocalizedClientLink href="/cart" className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone flex items-end css-1bklnqp" id="container-rhrHeader_cart-btn" data-analytics-id="link" aria-label="0 Items in Cart" data-ctaname="0 Items in Cart">
                       <div className="flex items-center gap-2">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-black" style={iconAndTextStyle}>
                           <path d="M4.51758 7.75806H18.7976V17.342C18.7976 18.8089 17.6084 19.9981 16.1415 19.9981H7.17363C5.70673 19.9981 4.51758 18.8089 4.51758 17.342V7.75806Z" stroke="currentColor" strokeWidth="0.75"></path>
@@ -121,7 +124,7 @@ const Header = () => {
                           </g>
                         </svg>
                       </div>
-                    </a>
+                    </LocalizedClientLink>
                   </div>
                 </div>
               </div>
