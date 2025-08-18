@@ -2,7 +2,7 @@ import React from 'react';
 
 const DiningTablesPage = () => {
   return (
-    <main id="main" className="jss18" style={{ flex: '1 1 0%', position: 'relative', zIndex: 1099, minHeight: '80vh', paddingTop: '0px' }}>
+    <main id="main" className="jss18 px-8" style={{ flex: '1 1 0%', position: 'relative', zIndex: 1099, minHeight: '80vh', paddingTop: '0px' }}>
       <div style={{ display: 'none' }}>SSR V1</div>
       <div className="MuiContainer-root jss6665 mt-[32px] sm:mt-[52px] md:mt-[44px] lg:mt-[44px] xl:mt-[44px] css-14v0rba">
         <div className="w-full" style={{ paddingBottom: '8px', alignItems: 'center' }}>
