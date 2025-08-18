@@ -21,7 +21,7 @@ type ShippingProps = {
   availableShippingMethods: HttpTypes.StoreCartShippingOption[] | null
 }
 
-function formatAddress(address: HttpTypes.StoreAddress | undefined) {
+function formatAddress(address: HttpTypes.AdminStockLocationAddress | undefined) {
   if (!address) {
     return ""
   }
