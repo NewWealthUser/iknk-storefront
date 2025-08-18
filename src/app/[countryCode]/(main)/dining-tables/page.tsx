@@ -8,7 +8,7 @@ const DiningTablesPage = () => {
         <div className="w-full" style={{ paddingBottom: '8px', alignItems: 'center' }}>
           <div className="flex justify-between items-center w-full">
             <div className="flex flex-wrap items-baseline text-left">
-              <h1 className="tailwind-typography-root jss6664 jss15438 tailwind-typography-h1" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography">Dining Tables</h1>
+              <h1 className="tailwind-typography-root jss6664 jss15438 tailwind-typography-h1 text-[27px]" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography">Dining Tables</h1>
             </div>
             <div>
               <p className="tailwind-typography-root jss6684 tailwind-typography-body1" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography">
