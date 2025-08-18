@@ -2,7 +2,7 @@ import React from 'react';
 
 const DiningTablesPage = () => {
   return (
-    <main id="main" className="jss18 px-8" style={{ flex: '1 1 0%', position: 'relative', zIndex: 1099, minHeight: '80vh', paddingTop: '0px' }}>
+    <main id="main" className="jss18 px-16" style={{ flex: '1 1 0%', position: 'relative', zIndex: 1099, minHeight: '80vh', paddingTop: '0px' }}>
       <div style={{ display: 'none' }}>SSR V1</div>
       <div className="MuiContainer-root jss6665 mt-[32px] sm:mt-[52px] md:mt-[44px] lg:mt-[44px] xl:mt-[44px] css-14v0rba">
         <div className="w-full" style={{ paddingBottom: '8px', alignItems: 'center' }}>
@@ -324,7 +324,7 @@ const DiningTablesPage = () => {
                   </div>
                   <div className="embla__controls align-center flex w-full items-center justify-center my-1.5 sm:my-2 md:my-2.5 ">
                     <button className="embla__prev relative m-0 inline-flex p-0 pr-2.5 opacity-0 transition-opacity duration-300 group-hover:cursor-default group-hover:opacity-0" aria-label="previous">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" className="rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" className="rotate-180">
                         <path d="M6 4L10 8L6 12" stroke="black"></path>
                       </svg>
                     </button>
