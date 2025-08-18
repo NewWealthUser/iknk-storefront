@@ -6,9 +6,10 @@ const Header = () => {
 
   const headerStyle: React.CSSProperties = {
     position: 'absolute',
-    background: isHovered ? 'white' : 'linear-gradient(0deg, rgba(38, 22, 10, 0) 0%, rgb(38, 22, 10) 100%)',
+    backgroundColor: isHovered ? 'white' : 'transparent',
+    backgroundImage: isHovered ? 'none' : 'linear-gradient(0deg, rgba(38, 22, 10, 0) 0%, rgb(38, 22, 10) 100%)',
     color: isHovered ? 'black' : 'white',
-    transition: 'background 0.8s ease-in-out, color 0.8s ease-in-out',
+    transition: 'background-color 0.8s ease-in-out, color 0.8s ease-in-out',
     top: '0px',
     height: '136px',
     width: '100%',
@@ -16,6 +17,7 @@ const Header = () => {
 
   const iconAndTextStyle: React.CSSProperties = {
     color: isHovered ? 'black' : 'white',
+    transition: 'color 0.8s ease-in-out',
   };
 
   const navLinkStyle: React.CSSProperties = {
