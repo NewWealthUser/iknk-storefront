@@ -4,13 +4,13 @@ const DiningTablesPage = () => {
   return (
     <main id="main" className="jss18" style={{ flex: '1 1 0%', position: 'relative', zIndex: 1099, minHeight: '80vh', paddingTop: '0px' }}>
       <div style={{ display: 'none' }}>SSR V1</div>
-      <div className="MuiContainer-root jss6665 mt-[32px] sm:mt-[52px] md:mt-[44px] lg:mt-[44px] xl:mt-[44px] css-14v0rba" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-        <div className="jss6668" style={{ paddingBottom: '8px', alignItems: 'center' }}>
-          <div className="jss6666">
-            <div className="flex flex-wrap items-baseline justify-center text-center sm:text-left">
+      <div className="MuiContainer-root jss6665 mt-[32px] sm:mt-[52px] md:mt-[44px] lg:mt-[44px] xl:mt-[44px] css-14v0rba">
+        <div className="w-full" style={{ paddingBottom: '8px', alignItems: 'center' }}>
+          <div className="flex justify-between items-center w-full">
+            <div className="flex flex-wrap items-baseline text-left">
               <h1 className="tailwind-typography-root jss6664 jss15438 tailwind-typography-h1" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography">Dining Tables</h1>
             </div>
-            <div className="jss6667">
+            <div>
               <p className="tailwind-typography-root jss6684 tailwind-typography-body1" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography">
                 <a className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-3ctrh9" id="component-rh-link" href="/us/en/membership" data-analytics-id="link" aria-label="Link" data-testid="rh-membership-link-pg" style={{ display: 'inline', color: 'rgb(0, 0, 0)', fontSize: '13px' }}>
                   <span className="font-primary-rhthin underline">RH MEMBERS PROGRAM</span>
