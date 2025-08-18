@@ -143,7 +143,7 @@ const Header = () => {
             </div>
           </div>
           <div className="jss20">
-            <ul className="flex flex-nowrap justify-between p-0 my-0" role="menubar" aria-label="Main">
+            <ul className="flex flex-wrap justify-center gap-x-8 p-0 my-0" role="menubar" aria-label="Main">
               {navItems.map((item) => (
                 <div key={item} className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
                   <button type="button" className="p-0 text-black">
