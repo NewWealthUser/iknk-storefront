@@ -8,10 +8,10 @@ const DiningTablesGridView = () => {
   const [viewMode, setViewMode] = useState(3); // Default to 3 columns
 
   const gridClasses = clx(
-    "grid w-full gap-x-8 gap-y-12",
+    "grid w-full gap-x-10 gap-y-16",
     {
-      "grid-cols-3": viewMode === 3,
-      "grid-cols-2": viewMode === 2,
+      "grid-cols-4": viewMode === 3,
+      "grid-cols-3": viewMode === 2,
     }
   );
 
@@ -40,6 +40,30 @@ const DiningTablesGridView = () => {
       name: "Aegean Aluminum Square Dining Table",
       priceMember: "$1285",
       priceRegular: "$1840"
+    },
+    {
+      imgSrc: "//media.restorationhardware.com/is/image/rhis/prod26600087_E99932393_F_CC_RHR?$np-fullwidth-xs$",
+      alt: "Fourth Dining Table",
+      href: "/us/en/catalog/product/product.jsp/prod26600087?swatch=251482",
+      name: "Fourth Dining Table",
+      priceMember: "$1485",
+      priceRegular: "$2040"
+    },
+    {
+      imgSrc: "//media.restorationhardware.com/is/image/rhis/prod12730055_E99932393_F_RHR?$np-fullwidth-xs$",
+      alt: "Fifth Dining Table",
+      href: "/us/en/catalog/product/product.jsp/prod12730055?swatch=291372",
+      name: "Fifth Dining Table",
+      priceMember: "$1585",
+      priceRegular: "$2180"
+    },
+    {
+      imgSrc: "//media.restorationhardware.com/is/image/rhis/prod20910346_E89931548_F_CC_RHR?$np-fullwidth-xs$",
+      alt: "Sixth Dining Table",
+      href: "/us/en/catalog/product/product.jsp/prod20910346?swatch=254008",
+      name: "Sixth Dining Table",
+      priceMember: "$1685",
+      priceRegular: "$2240"
     }
   ];
 
