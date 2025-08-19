@@ -10,8 +10,8 @@ const DiningTablesGridView = () => {
   const gridClasses = clx(
     "grid w-full gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12",
     {
-      "grid-cols-3": viewMode === 3,
-      "grid-cols-2": viewMode === 2,
+      "grid-cols-5": viewMode === 3,
+      "grid-cols-4": viewMode === 2,
     }
   );
 
