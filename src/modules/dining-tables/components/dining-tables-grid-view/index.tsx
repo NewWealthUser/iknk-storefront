@@ -8,7 +8,7 @@ const DiningTablesGridView = () => {
   const [viewMode, setViewMode] = useState(3); // Default to 3 columns
 
   const gridClasses = clx(
-    "grid w-full gap-x-4 sm:gap-x-8 md:gap-x-10 gap-y-7 sm:gap-y-12 md:gap-y-[60px] lg:gap-y-20 xl:gap-y-24",
+    "grid w-full gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12",
     {
       "grid-cols-3": viewMode === 3,
       "grid-cols-2": viewMode === 2,
@@ -46,7 +46,7 @@ const DiningTablesGridView = () => {
   return (
     <div>
       <DiningTablesHeader viewMode={viewMode} setViewMode={setViewMode} />
-      <div className="MuiContainer-root lg:pb-13.5 xl:pb-18.75 pb-7 sm:pb-9 md:pb-12 css-14v0rba px-4 sm:px-8 lg:px-16">
+      <div className="MuiContainer-root lg:pb-12 pb-6 sm:pb-8 md:pb-10 css-14v0rba px-4 sm:px-6 md:px-8">
         <div id="component-product-grid" className="relative">
           <div className={gridClasses}>
             {products.map((product, index) => (
@@ -68,27 +68,17 @@ const DiningTablesGridView = () => {
                   <div className="flex h-full w-full flex-col flex-wrap content-around">
                     <div className="flex h-full flex-col">
                       <a className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-7qu4t5" href={product.href}>
-                        <p className="tailwind-typography-root my-0 pt-1.5 font-primary-thin text-[10px] leading-[13.2px] text-black sm:pt-2.5 sm:text-[13px] sm:leading-5 lg:pt-1.5 text-center tailwind-typography-body1" style={{ minHeight: '30px' }}>Available in multiple finishes </p>
+                        <p className="text-xs text-gray-500 text-center pt-2" style={{ minHeight: '28px' }}>Available in multiple finishes </p>
                         <div className="flex flex-col">
-                          <div className="mt-1.5 sm:mt-2 md:mt-2.5">
+                          <div className="mt-2">
                             <div className="uppercase text-center">
-                              <span className=" font-primary-thin text-[13px] uppercase leading-[13.2px] text-gray-1 sm:leading-5">{product.name}</span>
+                              <span className="text-sm uppercase text-center font-semibold text-gray-800">{product.name}</span>
                             </div>
                           </div>
-                          <div className="box-border flex w-full flex-col justify-center pr-2.5 xs:justify-start items-center">
-                            <div className="flex flex-row flex-wrap items-baseline tracking-[0.165px] text-rhBlack justify-center xs:items-center whitespace-nowrap text-[11px]">
-                              <div className="">
-                                <span className="my-0 mr-1 text-[#000]">Starting at</span>
-                              </div>
-                              <span className="undefined">
-                                <span className="tracking-[0.04em] mr-1 font-primary-rhroman text-[#000]">{product.priceMember}</span>
-                                <span className="tracking-[0.04em] mr-1 font-primary-rhroman text-[#000]">Member /</span>
-                              </span>
-                              <span>
-                                <span className="tracking-[0.04em] mr-1 font-primary-rhthin text-[#000]">{product.priceRegular}</span>
-                                <span className="tracking-[0.04em] font-primary-rhthin text-[#000]">Regular</span>
-                              </span>
-                            </div>
+                          <div className="mt-1 flex justify-center flex-wrap items-baseline text-xs">
+                            <span className="text-gray-600 mr-1">Starting at</span>
+                            <span className="text-black font-medium mr-1">{product.priceMember} Member /</span>
+                            <span className="text-gray-600">{product.priceRegular} Regular</span>
                           </div>
                         </div>
                       </a>

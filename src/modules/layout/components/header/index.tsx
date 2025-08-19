@@ -58,7 +58,7 @@ const Header = () => {
       <header
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed jss19 header-height !pr-0 mui-fixed css-1p6sy91"
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed jss19 header-height mui-fixed css-1p6sy91"
         id="app-navigation-bar"
         data-testid="rhr-header"
         style={headerStyle}
@@ -120,38 +120,36 @@ const Header = () => {
                   </div>
                 </div>
                 <div className="sm:mt-0 sm:translate-y-1">
-                  <div className="flex w-full items-center justify-end place-self-end md:min-h-[26px]">
-                    <div className="flex h-full w-full items-center justify-end gap-8 sm:gap-10 lg:gap-12">
-                      <button className="inline-flex h-4 items-center justify-center gap-1 p-0 outline-none" type="button" id="radix-:r9:" aria-haspopup="menu" aria-expanded="false" data-state="closed" style={iconAndTextStyle}>
-                        <p className="font-rhc font-thin h-[13px] whitespace-nowrap text-[13px] capitalize leading-[120%] tracking-[0.52px]">USA</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-black" style={iconAndTextStyle}>
-                          <path d="M12.1699 6.75L8.16992 10.75L4.16992 6.75" stroke="currentColor" strokeWidth="0.75"></path>
-                        </svg>
-                      </button>
-                      <LocalizedClientLink href="/account" style={iconAndTextStyle}>
-                        <div className="MuiGrid-root MuiGrid-item flex">
-                          <button className="p-0" style={iconAndTextStyle}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="">
-                              <path d="M5.37543 19.4979H19.2354V14.5083C19.2354 13.2544 18.2189 12.2379 16.965 12.2379H7.64581C6.39192 12.2379 5.37543 13.2544 5.37543 14.5083V19.4979Z" stroke="currentColor" strokeWidth="0.75"></path>
-                              <path d="M15.5601 6.63C15.5601 8.42769 14.1028 9.885 12.3051 9.885C10.5074 9.885 9.05011 8.42769 9.05011 6.63C9.05011 4.83231 10.5074 3.375 12.3051 3.375C14.1028 3.375 15.5601 4.83231 15.5601 6.63Z" stroke="currentColor" strokeWidth="0.75"></path>
-                            </svg>
-                          </button>
-                        </div>
-                      </LocalizedClientLink>
-                      <LocalizedClientLink href="/cart" className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone flex items-end css-1bklnqp" id="container-rhrHeader_cart-btn" data-analytics-id="link" aria-label="0 Items in Cart" data-ctaname="0 Items in Cart">
-                        <div className="flex items-center gap-2">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-black" style={iconAndTextStyle}>
-                            <path d="M4.51758 7.75806H18.7976V17.342C18.7976 18.8089 17.6084 19.9981 16.1415 19.9981H7.17363C5.70673 19.9981 4.51758 18.8089 4.51758 17.342V7.75806Z" stroke="currentColor" strokeWidth="0.75"></path>
-                            <mask id="mask0_5301_119153" maskUnits="userSpaceOnUse" x="4" y="2" width="16" height="7">
-                              <rect width="14.28" height="4.76" transform="matrix(1 0 0 -1 4.51758 7.75806)" fill="#D9D9D9" stroke="currentColor" strokeWidth="0.75"></rect>
-                            </mask>
-                            <g mask="url(#mask0_5301_119153)">
-                              <path d="M15.0225 6.73622C15.0225 8.59465 13.516 10.1012 11.6575 10.1012C9.7991 10.1012 8.29254 8.59465 8.29254 6.73622C8.29254 4.87778 9.7991 3.37122 11.6575 3.37122C13.516 3.37122 15.0225 4.87778 15.0225 6.73622Z" stroke="currentColor" strokeWidth="0.75"></path>
-                            </g>
+                  <div className="flex h-full w-full items-center justify-end gap-6 sm:gap-8">
+                    <button className="inline-flex h-4 items-center justify-center gap-1 p-0 outline-none" type="button" id="radix-:r9:" aria-haspopup="menu" aria-expanded="false" data-state="closed" style={iconAndTextStyle}>
+                      <p className="font-rhc font-thin h-[13px] whitespace-nowrap text-[13px] capitalize leading-[120%] tracking-[0.52px]">USA</p>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-black" style={iconAndTextStyle}>
+                        <path d="M12.1699 6.75L8.16992 10.75L4.16992 6.75" stroke="currentColor" strokeWidth="0.75"></path>
+                      </svg>
+                    </button>
+                    <LocalizedClientLink href="/account" style={iconAndTextStyle}>
+                      <div className="MuiGrid-root MuiGrid-item flex">
+                        <button className="p-0" style={iconAndTextStyle}>
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="">
+                            <path d="M5.37543 19.4979H19.2354V14.5083C19.2354 13.2544 18.2189 12.2379 16.965 12.2379H7.64581C6.39192 12.2379 5.37543 13.2544 5.37543 14.5083V19.4979Z" stroke="currentColor" strokeWidth="0.75"></path>
+                            <path d="M15.5601 6.63C15.5601 8.42769 14.1028 9.885 12.3051 9.885C10.5074 9.885 9.05011 8.42769 9.05011 6.63C9.05011 4.83231 10.5074 3.375 12.3051 3.375C14.1028 3.375 15.5601 4.83231 15.5601 6.63Z" stroke="currentColor" strokeWidth="0.75"></path>
                           </svg>
-                        </div>
-                      </LocalizedClientLink>
-                    </div>
+                        </button>
+                      </div>
+                    </LocalizedClientLink>
+                    <LocalizedClientLink href="/cart" className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone flex items-end css-1bklnqp" id="container-rhrHeader_cart-btn" data-analytics-id="link" aria-label="0 Items in Cart" data-ctaname="0 Items in Cart">
+                      <div className="flex items-center gap-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-black" style={iconAndTextStyle}>
+                          <path d="M4.51758 7.75806H18.7976V17.342C18.7976 18.8089 17.6084 19.9981 16.1415 19.9981H7.17363C5.70673 19.9981 4.51758 18.8089 4.51758 17.342V7.75806Z" stroke="currentColor" strokeWidth="0.75"></path>
+                          <mask id="mask0_5301_119153" maskUnits="userSpaceOnUse" x="4" y="2" width="16" height="7">
+                            <rect width="14.28" height="4.76" transform="matrix(1 0 0 -1 4.51758 7.75806)" fill="#D9D9D9" stroke="currentColor" strokeWidth="0.75"></rect>
+                          </mask>
+                          <g mask="url(#mask0_5301_119153)">
+                            <path d="M15.0225 6.73622C15.0225 8.59465 13.516 10.1012 11.6575 10.1012C9.7991 10.1012 8.29254 8.59465 8.29254 6.73622C8.29254 4.87778 9.7991 3.37122 11.6575 3.37122C13.516 3.37122 15.0225 4.87778 15.0225 6.73622Z" stroke="currentColor" strokeWidth="0.75"></path>
+                          </g>
+                        </svg>
+                      </div>
+                    </LocalizedClientLink>
                   </div>
                 </div>
               </div>
