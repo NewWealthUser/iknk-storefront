@@ -9,7 +9,7 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 
 type Props = {
   params: Promise<{ category: string[]; countryCode: string }>
-  searchParams: URLSearchParams // Changed to URLSearchParams
+  searchParams: { [key: string]: string | string[] | undefined }; // Changed type to plain object
 }
 
 export async function generateStaticParams() {
@@ -61,7 +61,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function CategoryPage(props: Props) {
-  const searchParams = props.searchParams // Directly use URLSearchParams
+  const urlSearchParams = new URLSearchParams(props.searchParams as Record<string, string>); // Convert to URLSearchParams
   const params = await props.params
 
   const productCategory = await getCategoryByHandle(params.category)
@@ -73,7 +73,7 @@ export default async function CategoryPage(props: Props) {
   return (
     <CategoryTemplate
       category={productCategory}
-      searchParams={searchParams} // Pass searchParams
+      searchParams={urlSearchParams} // Pass the new URLSearchParams instance
       countryCode={params.countryCode}
     />
   )

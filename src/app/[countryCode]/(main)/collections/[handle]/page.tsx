@@ -9,7 +9,7 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 
 type Props = {
   params: Promise<{ handle: string; countryCode: string }>
-  searchParams: URLSearchParams // Changed to URLSearchParams
+  searchParams: { [key: string]: string | string[] | undefined }; // Changed type to plain object
 }
 
 export const PRODUCT_LIMIT = 12
@@ -64,7 +64,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function CollectionPage(props: Props) {
-  const searchParams = props.searchParams // Directly use URLSearchParams
+  const urlSearchParams = new URLSearchParams(props.searchParams as Record<string, string>); // Convert to URLSearchParams
   const params = await props.params
 
   const collection = await getCollectionByHandle(params.handle).then(
@@ -78,7 +78,7 @@ export default async function CollectionPage(props: Props) {
   return (
     <CollectionTemplate
       collection={collection}
-      searchParams={searchParams} // Pass searchParams
+      searchParams={urlSearchParams} // Pass the new URLSearchParams instance
       countryCode={params.countryCode}
     />
   )
