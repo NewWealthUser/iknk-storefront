@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 type Params = {
-  searchParams: { [key: string]: string | string[] | undefined }; // Changed type to plain object
+  searchParams: { [key: string]: string | string[] | undefined };
   params: Promise<{
     countryCode: string
   }>
@@ -17,11 +17,19 @@ type Params = {
 
 export default async function StorePage(props: Params) {
   const params = await props.params;
-  const urlSearchParams = new URLSearchParams(props.searchParams as Record<string, string>); // Convert to URLSearchParams
+  
+  const urlSearchParams = new URLSearchParams();
+  for (const [key, value] of Object.entries(props.searchParams)) {
+    if (typeof value === 'string') {
+      urlSearchParams.set(key, value);
+    } else if (Array.isArray(value) && value.length > 0) {
+      urlSearchParams.set(key, value[0]); // Take the first value if it's an array
+    }
+  }
 
   return (
     <StoreTemplate
-      searchParams={urlSearchParams} // Pass the new URLSearchParams instance
+      searchParams={urlSearchParams}
       countryCode={params.countryCode}
     />
   )
