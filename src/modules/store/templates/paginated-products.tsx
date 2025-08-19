@@ -2,13 +2,13 @@ import { fetchProductsForListing } from "@lib/catalog"
 import ProductPreview from "@modules/products/components/product-preview"
 import { Pagination } from "@modules/store/components/pagination"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
-import { getRegion } from "@lib/data/regions" // Import getRegion
+import { getRegion } from "@lib/data/regions"
 
 type PaginatedProductsProps = {
   sortBy?: SortOptions
-  page: number // Ensure page is always passed
+  page: number
   collectionId?: string
-  categoryId?: string
+  categoryId?: string // Ensure this is here
   productsIds?: string[]
   countryCode: string
   searchParams: URLSearchParams
@@ -17,20 +17,21 @@ type PaginatedProductsProps = {
 export default async function PaginatedProducts({
   sortBy,
   collectionId,
-  categoryId,
+  categoryId, // Destructure categoryId
   productsIds,
   countryCode,
   searchParams,
 }: PaginatedProductsProps) {
-  const page = parseInt(searchParams.get("page") || "1"); // Extract page from searchParams
-  const region = await getRegion(countryCode); // Fetch region
+  const page = parseInt(searchParams.get("page") || "1");
+  const region = await getRegion(countryCode);
 
   if (!region) {
-    return null; // Handle case where region is not found
+    return null;
   }
 
   const { items: products, pagination } = await fetchProductsForListing({
     collectionId,
+    categoryId, // Pass categoryId here
     searchParams,
   })
 
@@ -47,7 +48,7 @@ export default async function PaginatedProducts({
         {products.map((p) => {
           return (
             <li key={p.id}>
-              <ProductPreview product={p} region={region} /> {/* Pass region */}
+              <ProductPreview product={p} region={region} />
             </li>
           )
         })}

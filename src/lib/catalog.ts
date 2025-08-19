@@ -18,6 +18,7 @@ export async function fetchCollectionByHandle(handle: string) {
 interface FetchProductsForListingOptions {
   handle?: string; // Collection handle
   collectionId?: string;
+  categoryId?: string; // Added categoryId
   searchParams: URLSearchParams;
   pageSizeDefault?: number;
 }
@@ -30,6 +31,7 @@ interface FetchProductsForListingOptions {
 export async function fetchProductsForListing({
   handle,
   collectionId,
+  categoryId, // Destructure categoryId
   searchParams,
   pageSizeDefault = 24,
 }: FetchProductsForListingOptions) {
@@ -38,6 +40,8 @@ export async function fetchProductsForListing({
   const sortOption = (searchParams.get("sort") || "featured") as SortOptions;
 
   let resolvedCollectionId: string | undefined;
+  let resolvedCategoryId: string | undefined; // New variable for category ID
+
   if (handle) {
     const collection = await fetchCollectionByHandle(handle);
     if (!collection) {
@@ -46,6 +50,8 @@ export async function fetchProductsForListing({
     resolvedCollectionId = collection.id;
   } else if (collectionId) {
     resolvedCollectionId = collectionId;
+  } else if (categoryId) { // Handle categoryId
+    resolvedCategoryId = categoryId;
   }
 
   const queryParams: any = { // Changed to any to resolve type issues with expand, fields, order_by, order, collection_id, tags
@@ -55,6 +61,8 @@ export async function fetchProductsForListing({
 
   if (resolvedCollectionId) {
     queryParams.collection_id = [resolvedCollectionId];
+  } else if (resolvedCategoryId) { // Use category_id if resolved
+    queryParams.category_id = [resolvedCategoryId];
   }
 
   // Apply filters via tags convention
@@ -132,6 +140,7 @@ export async function fetchProductsForListing({
 interface FetchFacetsForListingOptions {
   handle?: string; // Collection handle
   collectionId?: string;
+  categoryId?: string; // Added categoryId
 }
 
 /**
@@ -142,8 +151,11 @@ interface FetchFacetsForListingOptions {
 export async function fetchFacetsForListing({
   handle,
   collectionId,
+  categoryId, // Destructure categoryId
 }: FetchFacetsForListingOptions) {
   let resolvedCollectionId: string | undefined;
+  let resolvedCategoryId: string | undefined; // New variable for category ID
+
   if (handle) {
     const collection = await fetchCollectionByHandle(handle);
     if (!collection) {
@@ -152,6 +164,8 @@ export async function fetchFacetsForListing({
     resolvedCollectionId = collection.id;
   } else if (collectionId) {
     resolvedCollectionId = collectionId;
+  } else if (categoryId) { // Handle categoryId
+    resolvedCategoryId = categoryId;
   }
 
   const queryParams: any = { // Changed to any to resolve type issues with collection_id, tags
@@ -161,6 +175,8 @@ export async function fetchFacetsForListing({
 
   if (resolvedCollectionId) {
     queryParams.collection_id = [resolvedCollectionId];
+  } else if (resolvedCategoryId) { // Use category_id if resolved
+    queryParams.category_id = [resolvedCategoryId];
   }
 
   const { products } = await medusaGet<{

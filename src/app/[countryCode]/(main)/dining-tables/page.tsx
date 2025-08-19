@@ -2,6 +2,7 @@ import React from 'react';
 import DiningTablesGridView from '../../../../modules/dining-tables/components/dining-tables-grid-view';
 import { fetchProductsForListing, fetchFacetsForListing } from '@lib/catalog';
 import { notFound } from 'next/navigation';
+import { getCategoryByHandle } from '@lib/data/categories'; // Import getCategoryByHandle
 
 type Props = {
   params: { countryCode: string };
@@ -9,23 +10,32 @@ type Props = {
 };
 
 const DiningTablesPage = async ({ params, searchParams }: Props) => {
-  const collectionHandle = "dining-tables";
-  
+  const categoryHandle = ["dining-tables"]; // Use category handle as an array
+
   const urlSearchParams = new URLSearchParams();
   for (const [key, value] of Object.entries(searchParams)) {
     if (typeof value === 'string') {
       urlSearchParams.set(key, value);
     } else if (Array.isArray(value) && value.length > 0) {
-      urlSearchParams.set(key, value[0]); // Take the first value if it's an array
+      urlSearchParams.set(key, value[0]);
     }
+  }
+
+  const category = await getCategoryByHandle(categoryHandle).catch((error) => {
+    console.error("Failed to fetch category:", error);
+    notFound();
+  });
+
+  if (!category) {
+    notFound();
   }
 
   const [
     { items: products, pagination, sort },
     facets
   ] = await Promise.all([
-    fetchProductsForListing({ handle: collectionHandle, searchParams: urlSearchParams }),
-    fetchFacetsForListing({ handle: collectionHandle }),
+    fetchProductsForListing({ categoryId: category.id, searchParams: urlSearchParams }), // Pass categoryId
+    fetchFacetsForListing({ categoryId: category.id }), // Pass categoryId
   ]).catch((error) => {
     console.error("Failed to fetch dining tables data:", error);
     notFound();
