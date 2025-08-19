@@ -4,8 +4,8 @@ import React, { useCallback } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import FilterRadioGroup from "@modules/common/components/filter-radio-group"
 import { SortOptions } from "../refinement-list/sort-products"
+import CheckboxWithLabel from "@modules/common/components/checkbox"
 
-type Option = { id: string; title: string; values: string[] }
 type Props = {
   facets: {
     material: string[];
@@ -39,6 +39,15 @@ export default function FiltersBar({ facets, selected, sort }: Props) {
     [searchParams, pathname, router]
   );
 
+  const handleInStockChange = () => {
+    const inStock = searchParams.get("in_stock") === "true";
+    if (inStock) {
+      setParam("in_stock", undefined); // remove param
+    } else {
+      setParam("in_stock", "true"); // add param
+    }
+  };
+
   const getFacetValue = (key: string) => searchParams.get(key);
 
   const sortOptions = [
@@ -50,7 +59,7 @@ export default function FiltersBar({ facets, selected, sort }: Props) {
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 pb-12">
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+      <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
         {facets.shape.length > 0 && (
           <FilterRadioGroup
             title="SHAPE"
@@ -83,6 +92,12 @@ export default function FiltersBar({ facets, selected, sort }: Props) {
             handleChange={(value) => setParam("seating", value)}
           />
         )}
+        <CheckboxWithLabel
+          label="In Stock"
+          name="in_stock"
+          checked={searchParams.get("in_stock") === "true"}
+          onChange={handleInStockChange}
+        />
       </div>
 
       <div className="flex items-center" style={{ flex: '0 0 auto' }}>

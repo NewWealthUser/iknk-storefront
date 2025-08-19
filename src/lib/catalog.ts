@@ -38,6 +38,7 @@ export async function fetchProductsForListing({
   const page = parseInt(searchParams.get("page") || "1");
   const pageSize = parseInt(searchParams.get("pageSize") || String(pageSizeDefault));
   const sortOption = (searchParams.get("sort") || "featured") as SortOptions;
+  const inStock = searchParams.get("in_stock") === "true";
 
   let resolvedCollectionId: string | undefined;
   let resolvedCategoryId: string | undefined; // New variable for category ID
@@ -62,6 +63,10 @@ export async function fetchProductsForListing({
     queryParams.collection_id = [resolvedCollectionId];
   } else if (resolvedCategoryId) { // Use category_id if resolved
     queryParams.category_id = [resolvedCategoryId];
+  }
+
+  if (inStock) {
+    queryParams.inventory_quantity = { gt: 0 };
   }
 
   // Apply filters via tags convention
