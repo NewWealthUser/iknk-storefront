@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Checkbox, Label } from '@medusajs/ui'; // Import Checkbox and Label
+import ChevronDown from '@modules/common/icons/chevron-down';
 
 const DiningTablesHeader = () => {
   return (
@@ -29,26 +30,26 @@ const DiningTablesHeader = () => {
               <Checkbox id="in-stock-filter" name="in-stock-filter" checked={false} onChange={() => {}} />
               <Label htmlFor="in-stock-filter" className="text-black text-[11px] font-normal leading-normal">IN-STOCK</Label>
             </div>
-            {/* SHAPE filter with checkbox */}
-            <div className="flex items-center gap-1">
-              <Checkbox id="shape-filter" name="shape-filter" checked={false} onChange={() => {}} />
-              <Label htmlFor="shape-filter" className="text-neutral-800 text-[11px] font-normal leading-normal">SHAPE</Label>
-            </div>
-            {/* MATERIAL filter with checkbox */}
-            <div className="flex items-center gap-1">
-              <Checkbox id="material-filter" name="material-filter" checked={false} onChange={() => {}} />
-              <Label htmlFor="material-filter" className="text-black text-[11px] font-normal leading-normal">MATERIAL</Label>
-            </div>
-            {/* SIZE filter with checkbox */}
-            <div className="flex items-center gap-1">
-              <Checkbox id="size-filter" name="size-filter" checked={false} onChange={() => {}} />
-              <Label htmlFor="size-filter" className="text-neutral-600 text-[11px] font-normal leading-normal">SIZE</Label>
-            </div>
-            {/* SEATING CAPACITY filter with checkbox */}
-            <div className="flex items-center gap-1">
-              <Checkbox id="seating-capacity-filter" name="seating-capacity-filter" checked={false} onChange={() => {}} />
-              <Label htmlFor="seating-capacity-filter" className="text-black text-[11px] font-normal leading-normal">SEATING CAPACITY</Label>
-            </div>
+            {/* SHAPE filter with dropdown */}
+            <button className="flex items-center gap-1">
+              <span className="text-neutral-800 text-[11px] font-normal leading-normal">SHAPE</span>
+              <ChevronDown size={16} />
+            </button>
+            {/* MATERIAL filter with dropdown */}
+            <button className="flex items-center gap-1">
+              <span className="text-black text-[11px] font-normal leading-normal">MATERIAL</span>
+              <ChevronDown size={16} />
+            </button>
+            {/* SIZE filter with dropdown */}
+            <button className="flex items-center gap-1">
+              <span className="text-neutral-600 text-[11px] font-normal leading-normal">SIZE</span>
+              <ChevronDown size={16} />
+            </button>
+            {/* SEATING CAPACITY filter with dropdown */}
+            <button className="flex items-center gap-1">
+              <span className="text-black text-[11px] font-normal leading-normal">SEATING CAPACITY</span>
+              <ChevronDown size={16} />
+            </button>
             {/* RESULTS (330) */}
             <div className="text-center text-stone-900 text-[11px] font-normal leading-normal">RESULTS (330)</div>
           </div>
