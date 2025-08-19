@@ -1,4 +1,5 @@
 import qs from 'qs';
+import { getAuthHeaders } from './data/cookies';
 
 /**
  * Builds a query string from a parameters object, correctly formatting for Medusa's API.
@@ -35,11 +36,14 @@ export async function medusaGet<T>(
     }
   }
 
+  const authHeaders = await getAuthHeaders();
+
   try {
     const res = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        ...authHeaders,
       },
       next: { revalidate: 60 },
     });

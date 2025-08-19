@@ -1,6 +1,7 @@
 "use server"
 
 import { sdk } from "@lib/config"
+import { medusaGet } from "@lib/medusa"
 import medusaError from "@lib/util/medusa-error"
 import { HttpTypes } from "@medusajs/types"
 import { revalidateTag } from "next/cache"
@@ -27,27 +28,15 @@ export async function retrieveCart(cartId?: string) {
     return null
   }
 
-  const headers = {
-    ...(await getAuthHeaders()),
-  }
+  const { cart } = await medusaGet<{ cart: HttpTypes.StoreCart | null }>(
+    `/store/carts/${id}`,
+    {
+      fields:
+        "*items, *region, *items.product, *items.variant, *items.thumbnail, *items.metadata, +items.total, *promotions, +shipping_methods.name",
+    }
+  ).catch(() => ({ cart: null }))
 
-  const next = {
-    ...(await getCacheOptions("carts")),
-  }
-
-  return await sdk.client
-    .fetch<HttpTypes.StoreCartResponse>(`/store/carts/${id}`, {
-      method: "GET",
-      query: {
-        fields:
-          "*items, *region, *items.product, *items.variant, *items.thumbnail, *items.metadata, +items.total, *promotions, +shipping_methods.name",
-      },
-      headers,
-      next,
-      cache: "force-cache",
-    })
-    .then(({ cart }) => cart)
-    .catch(() => null)
+  return cart
 }
 
 export async function getOrSetCart(countryCode: string) {
@@ -452,19 +441,10 @@ export async function updateRegion(countryCode: string, currentPath: string) {
 
 export async function listCartOptions() {
   const cartId = await getCartId()
-  const headers = {
-    ...(await getAuthHeaders()),
-  }
-  const next = {
-    ...(await getCacheOptions("shippingOptions")),
-  }
 
-  return await sdk.client.fetch<{
+  return await medusaGet<{
     shipping_options: HttpTypes.StoreCartShippingOption[]
   }>("/store/shipping-options", {
-    query: { cart_id: cartId },
-    next,
-    headers,
-    cache: "force-cache",
+    cart_id: cartId,
   })
 }

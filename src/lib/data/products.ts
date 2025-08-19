@@ -1,10 +1,9 @@
 "use server"
 
-import { sdk } from "@lib/config"
+import { medusaGet } from "@lib/medusa"
 import { sortProducts } from "@lib/util/sort-products"
 import { HttpTypes } from "@medusajs/types"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
-import { getAuthHeaders, getCacheOptions } from "./cookies"
 import { getRegion, retrieveRegion } from "./regions"
 
 export const listProducts = async ({
@@ -28,7 +27,7 @@ export const listProducts = async ({
 
   const limit = queryParams?.limit || 12
   const _pageParam = Math.max(pageParam, 1)
-  const offset = (_pageParam === 1) ? 0 : (_pageParam - 1) * limit;
+  const offset = _pageParam === 1 ? 0 : (_pageParam - 1) * limit
 
   let region: HttpTypes.StoreRegion | undefined | null
 
@@ -45,44 +44,28 @@ export const listProducts = async ({
     }
   }
 
-  const headers = {
-    ...(await getAuthHeaders()),
+  const { products, count } = await medusaGet<{
+    products: HttpTypes.StoreProduct[]
+    count: number
+  }>(`/store/products`, {
+    limit,
+    offset,
+    region_id: region?.id,
+    fields:
+      "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags",
+    ...queryParams,
+  })
+
+  const nextPage = count > offset + limit ? pageParam + 1 : null
+
+  return {
+    response: {
+      products,
+      count,
+    },
+    nextPage: nextPage,
+    queryParams,
   }
-
-  const next = {
-    ...(await getCacheOptions("products")),
-  }
-
-  return sdk.client
-    .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(
-      `/store/products`,
-      {
-        method: "GET",
-        query: {
-          limit,
-          offset,
-          region_id: region?.id,
-          fields:
-            "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags",
-          ...queryParams,
-        },
-        headers,
-        next,
-        cache: "force-cache",
-      }
-    )
-    .then(({ products, count }) => {
-      const nextPage = count > offset + limit ? pageParam + 1 : null
-
-      return {
-        response: {
-          products,
-          count,
-        },
-        nextPage: nextPage,
-        queryParams,
-      }
-    })
 }
 
 /**

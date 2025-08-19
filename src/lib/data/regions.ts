@@ -1,38 +1,21 @@
 "use server"
 
-import { sdk } from "@lib/config"
+import { medusaGet } from "@lib/medusa"
 import medusaError from "@lib/util/medusa-error"
 import { HttpTypes } from "@medusajs/types"
-import { getCacheOptions } from "./cookies"
 
 export const listRegions = async () => {
-  const next = {
-    ...(await getCacheOptions("regions")),
-  }
-
-  return sdk.client
-    .fetch<{ regions: HttpTypes.StoreRegion[] }>(`/store/regions`, {
-      method: "GET",
-      next,
-      cache: "force-cache",
-    })
-    .then(({ regions }) => regions)
-    .catch(medusaError)
+  const { regions } = await medusaGet<{ regions: HttpTypes.StoreRegion[] }>(
+    `/store/regions`
+  ).catch(medusaError)
+  return regions
 }
 
 export const retrieveRegion = async (id: string) => {
-  const next = {
-    ...(await getCacheOptions(["regions", id].join("-"))),
-  }
-
-  return sdk.client
-    .fetch<{ region: HttpTypes.StoreRegion }>(`/store/regions/${id}`, {
-      method: "GET",
-      next,
-      cache: "force-cache",
-    })
-    .then(({ region }) => region)
-    .catch(medusaError)
+  const { region } = await medusaGet<{ region: HttpTypes.StoreRegion }>(
+    `/store/regions/${id}`
+  ).catch(medusaError)
+  return region
 }
 
 const regionMap = new Map<string, HttpTypes.StoreRegion>()

@@ -1,13 +1,13 @@
 "use server"
 
 import { sdk } from "@lib/config"
+import { medusaGet } from "@lib/medusa"
 import medusaError from "@lib/util/medusa-error"
 import { HttpTypes } from "@medusajs/types"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 import {
   getAuthHeaders,
-  getCacheOptions,
   getCacheTag,
   getCartId,
   removeAuthToken,
@@ -19,28 +19,18 @@ export const retrieveCustomer =
   async (): Promise<HttpTypes.StoreCustomer | null> => {
     const authHeaders = await getAuthHeaders()
 
-    if (!authHeaders) return null
-
-    const headers = {
-      ...authHeaders,
+    if (!Object.keys(authHeaders).length) {
+      return null
     }
 
-    const next = {
-      ...(await getCacheOptions("customers")),
-    }
+    const { customer } = await medusaGet<{ customer: HttpTypes.StoreCustomer }>(
+      `/store/customers/me`,
+      {
+        fields: "*orders",
+      }
+    ).catch(() => ({ customer: null }))
 
-    return await sdk.client
-      .fetch<{ customer: HttpTypes.StoreCustomer }>(`/store/customers/me`, {
-        method: "GET",
-        query: {
-          fields: "*orders",
-        },
-        headers,
-        next,
-        cache: "force-cache",
-      })
-      .then(({ customer }) => customer)
-      .catch(() => null)
+    return customer
   }
 
 export const updateCustomer = async (body: HttpTypes.StoreUpdateCustomer) => {
