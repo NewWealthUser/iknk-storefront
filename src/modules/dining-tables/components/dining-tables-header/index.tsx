@@ -1,4 +1,5 @@
 import React from 'react';
+import { Checkbox, Label } from '@medusajs/ui'; // Import Checkbox and Label
 
 const DiningTablesHeader = () => {
   return (
@@ -11,54 +12,47 @@ const DiningTablesHeader = () => {
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4"> {/* Right side: IKONIK, PARTNERS, Icons */}
           <div className="text-neutral-500 text-[9px] font-normal leading-[7px]">IKONIK</div>
           <div className="text-neutral-700 text-[9px] font-normal leading-[7px]">PARTNERS SAVE UP TO 20% ON EVERYTHING</div>
-          <div className="flex items-center gap-2">
-            <img className="w-5 h-5" src="https://placehold.co/19x19" alt="icon" />
-            <img className="w-4 h-4" src="https://placehold.co/17x17" alt="icon" />
-          </div>
+          {/* Removed placeholder icons */}
         </div>
       </div>
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2"> {/* Filter/Sort row */}
-        {/* SALE button */}
-        <div className="relative flex items-center justify-center p-1 border border-transparent rounded-md">
-          <img className="w-12 h-6 absolute inset-0" src="https://placehold.co/48x24" alt="background" />
-          <div className="relative z-10 flex items-center">
-            <img className="w-4 h-4" src="https://placehold.co/17x16" alt="icon" />
-            <div className="text-center text-red-700 text-[8px] font-normal leading-[7px] ml-1">SALE</div>
-          </div>
-        </div>
-        {/* IN-STOCK button */}
-        <div className="relative flex items-center justify-center p-1 border border-transparent rounded-md">
-          <img className="w-16 h-6 absolute inset-0" src="https://placehold.co/66x24" alt="background" />
-          <div className="relative z-10 flex items-center">
-            <img className="w-4 h-4" src="https://placehold.co/17x16" alt="icon" />
-            <div className="text-center text-black text-[8px] font-normal leading-[7px] ml-1">IN-STOCK</div>
-          </div>
-        </div>
-        {/* SHAPE filter */}
+        {/* SALE filter with checkbox */}
         <div className="flex items-center gap-1">
-          <img className="w-11 h-3.5" src="https://placehold.co/44x15" alt="background" />
-          <div className="text-center text-neutral-800 text-[8px] font-normal leading-[6px]">SHAPE</div>
+          <Checkbox id="sale-filter" name="sale-filter" checked={false} onChange={() => {}} />
+          <Label htmlFor="sale-filter" className="text-red-700 text-[8px] font-normal leading-[7px]">SALE</Label>
         </div>
-        {/* MATERIAL filter */}
+        {/* IN-STOCK filter with checkbox */}
         <div className="flex items-center gap-1">
-          <div className="text-center text-black text-[7px] font-normal leading-[8px]">MATERIAL</div>
+          <Checkbox id="in-stock-filter" name="in-stock-filter" checked={false} onChange={() => {}} />
+          <Label htmlFor="in-stock-filter" className="text-black text-[8px] font-normal leading-[7px]">IN-STOCK</Label>
         </div>
-        {/* SIZE filter */}
+        {/* SHAPE filter with checkbox */}
         <div className="flex items-center gap-1">
-          <img className="w-9 h-3.5" src="https://placehold.co/36x15" alt="background" />
-          <div className="text-center text-neutral-600 text-[7px] font-normal leading-[8px]">SIZE</div>
+          <Checkbox id="shape-filter" name="shape-filter" checked={false} onChange={() => {}} />
+          <Label htmlFor="shape-filter" className="text-neutral-800 text-[8px] font-normal leading-[6px]">SHAPE</Label>
         </div>
-        {/* SEATING CAPACITY filter */}
+        {/* MATERIAL filter with checkbox */}
         <div className="flex items-center gap-1">
-          <div className="text-center text-black text-[8px] font-normal leading-[8px]">SEATING CAPACITY</div>
+          <Checkbox id="material-filter" name="material-filter" checked={false} onChange={() => {}} />
+          <Label htmlFor="material-filter" className="text-black text-[7px] font-normal leading-[8px]">MATERIAL</Label>
+        </div>
+        {/* SIZE filter with checkbox */}
+        <div className="flex items-center gap-1">
+          <Checkbox id="size-filter" name="size-filter" checked={false} onChange={() => {}} />
+          <Label htmlFor="size-filter" className="text-neutral-600 text-[7px] font-normal leading-[8px]">SIZE</Label>
+        </div>
+        {/* SEATING CAPACITY filter with checkbox */}
+        <div className="flex items-center gap-1">
+          <Checkbox id="seating-capacity-filter" name="seating-capacity-filter" checked={false} onChange={() => {}} />
+          <Label htmlFor="seating-capacity-filter" className="text-black text-[8px] font-normal leading-[8px]">SEATING CAPACITY</Label>
         </div>
         {/* RESULTS (330) */}
         <div className="text-center text-stone-900 text-[7px] font-normal leading-[8px]">RESULTS (330)</div>
         {/* SORT: FEATURED */}
         <div className="flex items-center gap-1">
           <div className="text-center text-neutral-700 text-[8px] font-normal leading-[6px]">SORT: FEATURED</div>
-          <img className="w-3.5 h-2.5" src="https://placehold.co/14x11" alt="icon" />
+          {/* Removed placeholder icon */}
         </div>
       </div>
     </div>
