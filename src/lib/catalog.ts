@@ -54,9 +54,8 @@ export async function fetchProductsForListing({
     resolvedCategoryId = categoryId;
   }
 
-  const queryParams: any = { // Changed to any to resolve type issues with expand, fields, order_by, order, collection_id, tags
-    expand: "variants,variants.prices,images",
-    fields: "id,title,handle,thumbnail,images,variants.prices,variants.options,variants.product,metadata,tags",
+  const queryParams: any = {
+    fields: "id,title,handle,thumbnail,*images,*variants,*variants.prices,*variants.options,metadata,*tags",
   };
 
   if (resolvedCollectionId) {
