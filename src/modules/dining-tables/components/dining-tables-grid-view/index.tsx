@@ -44,9 +44,9 @@ const DiningTablesGridView = () => {
   ];
 
   return (
-    <div>
+    <div className="content-container">
       <DiningTablesHeader viewMode={viewMode} setViewMode={setViewMode} />
-      <div className="lg:pb-12 pb-6 sm:pb-8 md:pb-10 px-4 sm:px-6 md:px-8">
+      <div className="lg:pb-12 pb-6 sm:pb-8 md:pb-10">
         <div id="component-product-grid" className="relative">
           <div className={gridClasses}>
             {products.map((product, index) => (
