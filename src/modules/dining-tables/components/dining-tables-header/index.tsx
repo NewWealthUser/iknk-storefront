@@ -12,8 +12,6 @@ const DiningTablesHeader = () => {
           <h1 className="text-stone-500 text-[27px] font-normal leading-none ml-1">TABLES</h1>
         </div>
         <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4"> {/* Right side: IKONIK, PARTNERS, Icons */}
-          <div className="text-neutral-500 text-[9px] font-normal leading-[7px]">IKONIK</div>
-          <div className="text-neutral-700 text-[9px] font-normal leading-[7px]">PARTNERS SAVE UP TO 20% ON EVERYTHING</div>
           {/* Removed placeholder icons */}
         </div>
       </div>
