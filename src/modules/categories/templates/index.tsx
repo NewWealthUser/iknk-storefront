@@ -3,13 +3,14 @@ import { Suspense } from "react"
 
 import InteractiveLink from "@modules/common/components/interactive-link"
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
-import RefinementList from "@modules/store/components/refinement-list"
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import type { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
+import FiltersBar from "@modules/store/components/filters-bar"
+import { fetchFacetsForListing } from "@lib/catalog"
 
-export default function CategoryTemplate({
+export default async function CategoryTemplate({
   category,
   searchParams, // Receive searchParams
   countryCode,
@@ -34,12 +35,14 @@ export default function CategoryTemplate({
 
   getParents(category)
 
+  const facets = await fetchFacetsForListing({ categoryId: category.id });
+  const selectedParams = Object.fromEntries(searchParams.entries());
+
   return (
     <div
       className="flex flex-col small:flex-row small:items-start py-6 content-container"
       data-testid="category-container"
     >
-      <RefinementList sortBy={sortBy} data-testid="sort-by-container" />
       <div className="w-full">
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
           {parents &&
@@ -75,6 +78,7 @@ export default function CategoryTemplate({
             </ul>
           </div>
         )}
+        <FiltersBar facets={facets} selected={selectedParams} sort={sortBy} />
         <Suspense
           fallback={
             <SkeletonProductGrid

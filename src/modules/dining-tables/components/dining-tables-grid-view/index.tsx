@@ -5,7 +5,7 @@ import DiningTablesHeader from '../dining-tables-header';
 import { clx } from '@medusajs/ui';
 import { HttpTypes } from '@medusajs/types';
 import { SortOptions } from '@modules/store/components/refinement-list/sort-products';
-import ProductPreview from '@modules/products/components/product-preview';
+import ProductCard from '@modules/products/components/product-card';
 import { Pagination } from '@modules/store/components/pagination';
 import { useParams } from 'next/navigation';
 import { getRegion } from '@lib/data/regions'; // Import getRegion
@@ -75,12 +75,12 @@ const DiningTablesGridView = ({
                     <div className="embla group/item group relative z-10 block w-full overflow-hidden">
                       <div className="embla__container flex h-full items-center">
                         <div className="embla__slide relative z-20 min-w-0 flex-[0_0_100%] justify-around">
-                          <ProductPreview product={product} region={region} /> {/* Pass region */}
+                          <ProductCard product={product} /> {/* Pass region */}
                         </div>
                       </div>
                     </div>
                   </div>
-                  {/* Product details are now handled within ProductPreview, but if there are specific details for this view, they can be added here */}
+                  {/* Product details are now handled within ProductCard, but if there are specific details for this view, they can be added here */}
                 </div>
               </div>
             ))}

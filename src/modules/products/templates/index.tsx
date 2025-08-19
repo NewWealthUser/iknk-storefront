@@ -1,6 +1,6 @@
 import React, { Suspense } from "react"
 
-import ImageGallery from "@modules/products/components/image-gallery"
+import ProductImageCarousel from "@modules/products/components/product-image-carousel"
 import ProductActions from "@modules/products/components/product-actions"
 import ProductOnboardingCta from "@modules/products/components/product-onboarding-cta"
 import ProductTabs from "@modules/products/components/product-tabs"
@@ -10,6 +10,7 @@ import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-relat
 import { notFound } from "next/navigation"
 import ProductActionsWrapper from "./product-actions-wrapper"
 import { HttpTypes } from "@medusajs/types"
+import ProductPrice from "@modules/products/components/product-card/product-price"
 
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
@@ -32,15 +33,15 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         className="content-container flex flex-col small:flex-row small:items-start py-6 relative"
         data-testid="product-container"
       >
-        <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
-          <ProductInfo product={product} />
-          <ProductTabs product={product} />
-        </div>
         <div className="block w-full relative">
-          <ImageGallery images={product?.images || []} />
+          <ProductImageCarousel images={product?.images || []} />
         </div>
         <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-12">
           <ProductOnboardingCta />
+          <div className="flex flex-col gap-y-2">
+            <h1 className="text-2xl md:text-3xl font-semibold">{product.title}</h1>
+            <div className="mt-2"><ProductPrice product={product} /></div>
+          </div>
           <Suspense
             fallback={
               <ProductActions
@@ -53,6 +54,10 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             <ProductActionsWrapper id={product.id} region={region} />
           </Suspense>
         </div>
+      </div>
+      <div className="content-container my-16 small:my-32">
+        <ProductInfo product={product} />
+        <ProductTabs product={product} />
       </div>
       <div
         className="content-container my-16 small:my-32"
