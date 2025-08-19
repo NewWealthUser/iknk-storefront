@@ -6,10 +6,10 @@ import { Checkbox, Label } from '@medusajs/ui'; // Import Checkbox and Label
 const DiningTablesHeader = () => {
   return (
     <div className="w-full py-4 px-16"> {/* Outer container, responsive width, some vertical padding, and horizontal padding */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4"> {/* Header row */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 max-w-[1178px] h-[31px] mx-auto"> {/* Header row, now centered with fixed dimensions */}
         <div className="flex items-baseline mb-2 sm:mb-0"> {/* Left side: DINING TABLES */}
-          <h1 className="text-neutral-800 text-base font-normal leading-none">DINING</h1>
-          <h1 className="text-stone-500 text-base font-normal leading-none ml-1">TABLES</h1>
+          <h1 className="text-neutral-800 text-[27px] font-normal leading-none">DINING</h1>
+          <h1 className="text-stone-500 text-[27px] font-normal leading-none ml-1">TABLES</h1>
         </div>
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4"> {/* Right side: IKONIK, PARTNERS, Icons */}
           <div className="text-neutral-500 text-[9px] font-normal leading-[7px]">IKONIK</div>
