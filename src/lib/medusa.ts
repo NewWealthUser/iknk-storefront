@@ -23,9 +23,14 @@ export async function medusaGet<T>(
 ): Promise<T> {
   // Use MEDUSA_BACKEND_URL for consistency with the SDK configuration
   const baseUrl = process.env.MEDUSA_BACKEND_URL;
+  const publishableKey = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY;
 
   if (!baseUrl) {
     throw new Error("The MEDUSA_BACKEND_URL environment variable is not set.");
+  }
+
+  if (!publishableKey) {
+    throw new Error("The NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY environment variable is not set. This key is required for API requests.");
   }
 
   let url = `${baseUrl}${path}`;
@@ -44,6 +49,7 @@ export async function medusaGet<T>(
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'x-publishable-api-key': publishableKey, // Add the publishable key here
         ...authHeaders,
       },
       next: { revalidate: 60 },
