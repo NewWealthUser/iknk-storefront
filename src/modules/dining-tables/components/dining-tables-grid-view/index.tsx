@@ -17,7 +17,7 @@ type DiningTablesGridViewProps = {
   sort: SortOptions;
   facets: {
     material: string[];
-    seating: number[];
+    seating: string[]; // Changed to string[]
     shape: string[];
     size: string[];
   };

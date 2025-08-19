@@ -69,7 +69,7 @@ type Props = {
   products: Product[];
   filters: {
     material?: string[];
-    seating?: string[];
+    seating?: string[]; // Changed to string[]
     shape?: string[];
     size?: string[];
   };

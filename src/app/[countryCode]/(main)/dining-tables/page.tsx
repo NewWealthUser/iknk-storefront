@@ -1,6 +1,8 @@
 import React from 'react';
 import { fetchProductsForListing, fetchFacetsForListing } from '@lib/catalog';
 import ProductListingTemplate from '@modules/common/components/ProductListingTemplate';
+import { getCategoryByHandle } from '@lib/data/categories';
+import { notFound } from 'next/navigation';
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -18,10 +20,17 @@ export default async function DiningTablesPage({ searchParams }: Props) {
     }
   });
 
-  // Fetch listing data and facets concurrently
+  // Fetch the category by its handle
+  const category = await getCategoryByHandle(["dining-tables"]);
+
+  if (!category) {
+    notFound(); // If category not found, return 404
+  }
+
+  // Fetch listing data and facets concurrently using categoryId
   const [listing, facets] = await Promise.all([
-    fetchProductsForListing({ handle: "dining-tables", searchParams: params }),
-    fetchFacetsForListing({ handle: "dining-tables" })
+    fetchProductsForListing({ categoryId: category.id, searchParams: params }),
+    fetchFacetsForListing({ categoryId: category.id })
   ]);
 
   // Convert searchParams to a plain object for the 'selected' prop

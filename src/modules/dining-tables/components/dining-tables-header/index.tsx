@@ -13,7 +13,7 @@ type DiningTablesHeaderProps = {
   totalResults: number;
   facets: {
     material: string[];
-    seating: number[];
+    seating: string[]; // Changed to string[]
     shape: string[];
     size: string[];
   };

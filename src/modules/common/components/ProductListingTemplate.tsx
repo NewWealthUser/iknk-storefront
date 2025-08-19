@@ -12,7 +12,7 @@ type ProductListingTemplateProps = {
   sort: SortOptions;
   filters: {
     material: string[];
-    seating: number[];
+    seating: string[]; // Changed to string[]
     shape: string[];
     size: string[];
   };
