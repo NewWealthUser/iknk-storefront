@@ -1,6 +1,6 @@
 import React from 'react';
 import { fetchProductsForListing, fetchFacetsForListing } from '@lib/catalog';
-import ProductListingTemplate from '@modules/products/templates/ProductListingTemplate';
+import ProductListingTemplate from '@modules/common/components/ProductListingTemplate';
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
