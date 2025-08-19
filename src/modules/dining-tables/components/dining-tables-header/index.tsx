@@ -1,3 +1,5 @@
+"use client"; // Mark this as a Client Component
+
 import React from 'react';
 import { Checkbox, Label } from '@medusajs/ui'; // Import Checkbox and Label
 
