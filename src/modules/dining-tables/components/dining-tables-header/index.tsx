@@ -5,7 +5,7 @@ import { Checkbox, Label } from '@medusajs/ui'; // Import Checkbox and Label
 
 const DiningTablesHeader = () => {
   return (
-    <div className="w-full pt-11 pb-4 px-16"> {/* Outer container with main padding */}
+    <div className="w-full pt-11 pb-4"> {/* Outer container with main padding */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4"> {/* Title and IKONIK row */}
         <div className="flex items-baseline mb-2 sm:mb-0"> {/* Left side: DINING TABLES */}
           <h1 className="text-neutral-800 text-[27px] font-normal leading-none">DINING</h1>
