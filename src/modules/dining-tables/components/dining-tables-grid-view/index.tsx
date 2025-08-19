@@ -8,7 +8,7 @@ const DiningTablesGridView = () => {
   const [viewMode, setViewMode] = useState(3); // Default to 3 columns
 
   const gridClasses = clx(
-    "grid w-full gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12",
+    "grid gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12",
     {
       "grid-cols-5": viewMode === 3,
       "grid-cols-4": viewMode === 2,
@@ -47,7 +47,7 @@ const DiningTablesGridView = () => {
     <div>
       <DiningTablesHeader viewMode={viewMode} setViewMode={setViewMode} />
       <div className="MuiContainer-root lg:pb-12 pb-6 sm:pb-8 md:pb-10 css-14v0rba px-4 sm:px-6 md:px-8">
-        <div id="component-product-grid" className="relative">
+        <div id="component-product-grid" className="relative flex justify-center">
           <div className={gridClasses}>
             {products.map((product, index) => (
               <div key={index} className="flex w-full justify-center">
