@@ -5,9 +5,9 @@ const DiningTablesPage = () => {
   return (
     <main id="main" className="jss18" style={{ flex: '1 1 0%', position: 'relative', zIndex: 1099, minHeight: '80vh', paddingTop: '0px' }}>
       <div style={{ display: 'none' }}>SSR V1</div>
-      <div className="px-16">
+      <div>
         <DiningTablesHeader /> {/* New responsive header component */}
-        <div className="MuiContainer-root lg:pb-13.5 xl:pb-18.75 pb-7 sm:pb-9 md:pb-12 css-14v0rba">
+        <div className="MuiContainer-root lg:pb-13.5 xl:pb-18.75 pb-7 sm:pb-9 md:pb-12 css-14v0rba px-16">
           <div id="component-product-grid" className="relative">
             <div className="inline-flex mb-8 md:mb-9 lg:mb-[60px] flex-wrap gap-x-4 sm:gap-x-8 md:gap-x-10 gap-y-7 sm:gap-y-12 md:gap-y-[60px] lg:gap-y-20 xl:gap-y-24 w-full">
               <div id="RH__null__0" className="productVisible mb-3 flex w-full justify-center" style={{ width: '30.3%' }}>

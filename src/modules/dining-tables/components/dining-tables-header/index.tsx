@@ -5,13 +5,13 @@ import { Checkbox, Label } from '@medusajs/ui'; // Import Checkbox and Label
 
 const DiningTablesHeader = () => {
   return (
-    <div className="w-full pt-11 pb-4"> {/* Outer container with main padding */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4"> {/* Title and IKONIK row */}
+    <div className="w-full pt-11 pb-4 px-16"> {/* Outer container with main padding */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4"> {/* Title and IKONIK row */}
         <div className="flex items-baseline mb-2 sm:mb-0"> {/* Left side: DINING TABLES */}
           <h1 className="text-neutral-800 text-[27px] font-normal leading-none">DINING</h1>
           <h1 className="text-stone-500 text-[27px] font-normal leading-none ml-1">TABLES</h1>
         </div>
-        <div className="ml-auto flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4"> {/* Right side: IKONIK, PARTNERS, Icons */}
+        <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4"> {/* Right side: IKONIK, PARTNERS, Icons */}
           <div className="text-neutral-500 text-[9px] font-normal leading-[7px]">IKONIK</div>
           <div className="text-neutral-700 text-[9px] font-normal leading-[7px]">PARTNERS SAVE UP TO 20% ON EVERYTHING</div>
           {/* Removed placeholder icons */}
