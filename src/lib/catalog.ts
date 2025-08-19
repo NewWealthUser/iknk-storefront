@@ -217,7 +217,7 @@ export async function fetchFacetsForListing({
 
   return {
     material: Array.from(materials).sort(),
-    seating: Array.from(seatingCapacities).sort((a, b) => a - b), // Numeric sort
+    seating: Array.from(seatingCapacities).sort((a, b) => a - b).map(String), // Numeric sort and convert to string
     shape: Array.from(shapes).sort(),
     size: Array.from(sizes).sort(),
   };
