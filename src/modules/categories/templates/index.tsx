@@ -11,17 +11,15 @@ import { HttpTypes } from "@medusajs/types"
 
 export default function CategoryTemplate({
   category,
-  sortBy,
-  page,
+  searchParams, // Receive searchParams
   countryCode,
 }: {
   category: HttpTypes.StoreProductCategory
-  sortBy?: SortOptions
-  page?: string
+  searchParams: URLSearchParams // Define searchParams type
   countryCode: string
 }) {
-  const pageNumber = page ? parseInt(page) : 1
-  const sort = sortBy || "created_at"
+  const sortBy = (searchParams.get("sort") || "featured") as SortOptions; // Get sort from searchParams
+  const page = parseInt(searchParams.get("page") || "1"); // Extract page from searchParams
 
   if (!category || !countryCode) notFound()
 
@@ -41,7 +39,7 @@ export default function CategoryTemplate({
       className="flex flex-col small:flex-row small:items-start py-6 content-container"
       data-testid="category-container"
     >
-      <RefinementList sortBy={sort} data-testid="sort-by-container" />
+      <RefinementList sortBy={sortBy} data-testid="sort-by-container" />
       <div className="w-full">
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
           {parents &&
@@ -85,10 +83,11 @@ export default function CategoryTemplate({
           }
         >
           <PaginatedProducts
-            sortBy={sort}
-            page={pageNumber}
+            sortBy={sortBy}
             categoryId={category.id}
+            searchParams={searchParams} // Pass searchParams
             countryCode={countryCode}
+            page={page} // Pass page
           />
         </Suspense>
       </div>

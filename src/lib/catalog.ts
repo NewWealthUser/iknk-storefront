@@ -48,7 +48,7 @@ export async function fetchProductsForListing({
     resolvedCollectionId = collectionId;
   }
 
-  const queryParams: HttpTypes.StoreProductParams & HttpTypes.FindParams = {
+  const queryParams: any = { // Changed to any to resolve type issues with expand, fields, order_by, order, collection_id, tags
     expand: "variants,variants.prices,images",
     fields: "id,title,handle,thumbnail,images,variants.prices,variants.options,variants.product,metadata,tags",
   };
@@ -154,7 +154,7 @@ export async function fetchFacetsForListing({
     resolvedCollectionId = collectionId;
   }
 
-  const queryParams: HttpTypes.StoreProductParams & HttpTypes.FindParams = {
+  const queryParams: any = { // Changed to any to resolve type issues with collection_id, tags
     limit: 200, // Fetch up to 200 products for facets
     fields: "id,tags,metadata", // Light payload
   };

@@ -7,32 +7,31 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import PaginatedProducts from "./paginated-products"
 
 const StoreTemplate = ({
-  sortBy,
-  page,
+  searchParams, // Receive searchParams
   countryCode,
 }: {
-  sortBy?: SortOptions
-  page?: string
+  searchParams: URLSearchParams // Define searchParams type
   countryCode: string
 }) => {
-  const pageNumber = page ? parseInt(page) : 1
-  const sort = sortBy || "created_at"
+  const sortBy = (searchParams.get("sort") || "featured") as SortOptions; // Get sort from searchParams
+  const page = parseInt(searchParams.get("page") || "1"); // Extract page from searchParams
 
   return (
     <div
       className="flex flex-col small:flex-row small:items-start py-6 content-container"
       data-testid="category-container"
     >
-      <RefinementList sortBy={sort} />
+      <RefinementList sortBy={sortBy} />
       <div className="w-full">
         <div className="mb-8 text-2xl-semi">
           <h1 data-testid="store-page-title">All products</h1>
         </div>
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
-            sortBy={sort}
-            page={pageNumber}
+            sortBy={sortBy}
+            searchParams={searchParams} // Pass searchParams
             countryCode={countryCode}
+            page={page} // Pass page
           />
         </Suspense>
       </div>

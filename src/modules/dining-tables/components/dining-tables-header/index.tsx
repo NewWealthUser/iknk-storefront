@@ -3,13 +3,50 @@
 import React from 'react';
 import { Checkbox, Label } from '@medusajs/ui';
 import ChevronDown from '@modules/common/icons/chevron-down';
+import { SortOptions } from '@modules/store/components/refinement-list/sort-products';
+import { useRouter, usePathname } from 'next/navigation';
+import FilterRadioGroup from '@modules/common/components/filter-radio-group';
 
 type DiningTablesHeaderProps = {
   viewMode: number;
   setViewMode: (mode: number) => void;
+  totalResults: number;
+  facets: {
+    material: string[];
+    seating: number[];
+    shape: string[];
+    size: string[];
+  };
+  sort: SortOptions;
+  searchParams: URLSearchParams;
 };
 
-const DiningTablesHeader = ({ viewMode, setViewMode }: DiningTablesHeaderProps) => {
+const DiningTablesHeader = ({
+  viewMode,
+  setViewMode,
+  totalResults,
+  facets,
+  sort,
+  searchParams,
+}: DiningTablesHeaderProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const setQueryParams = (name: string, value: string | number) => {
+    const params = new URLSearchParams(searchParams);
+    params.set(name, String(value));
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
+  const getFacetValue = (key: string) => searchParams.get(key);
+
+  const sortOptions = [
+    { value: "featured", label: "Featured" },
+    { value: "newest", label: "Newest" },
+    { value: "price_asc", label: "Price: Low -> High" },
+    { value: "price_desc", label: "Price: High -> Low" },
+  ];
+
   return (
     <div className="w-full pt-11 pb-4">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
@@ -29,33 +66,50 @@ const DiningTablesHeader = ({ viewMode, setViewMode }: DiningTablesHeaderProps) 
             <Checkbox id="in-stock-filter" name="in-stock-filter" checked={false} onChange={() => {}} />
             <Label htmlFor="in-stock-filter" className="text-black text-[11px] font-normal leading-normal">IN-STOCK</Label>
           </div>
-          <button className="flex items-center gap-1">
-            <span className="text-neutral-800 text-[11px] font-normal leading-normal">SHAPE</span>
-            <ChevronDown size={16} />
-          </button>
-          <button className="flex items-center gap-1">
-            <span className="text-black text-[11px] font-normal leading-normal">MATERIAL</span>
-            <ChevronDown size={16} />
-          </button>
-          <button className="flex items-center gap-1">
-            <span className="text-neutral-600 text-[11px] font-normal leading-normal">SIZE</span>
-            <ChevronDown size={16} />
-          </button>
-          <button className="flex items-center gap-1">
-            <span className="text-black text-[11px] font-normal leading-normal">SEATING CAPACITY</span>
-            <ChevronDown size={16} />
-          </button>
-          <div className="text-center text-stone-900 text-[11px] font-normal leading-normal">RESULTS (330)</div>
+
+          {facets.shape.length > 0 && (
+            <FilterRadioGroup
+              title="SHAPE"
+              items={facets.shape.map(s => ({ value: s, label: s }))}
+              value={getFacetValue("shape")}
+              handleChange={(value) => setQueryParams("shape", value)}
+            />
+          )}
+          {facets.material.length > 0 && (
+            <FilterRadioGroup
+              title="MATERIAL"
+              items={facets.material.map(m => ({ value: m, label: m }))}
+              value={getFacetValue("material")}
+              handleChange={(value) => setQueryParams("material", value)}
+            />
+          )}
+          {facets.size.length > 0 && (
+            <FilterRadioGroup
+              title="SIZE"
+              items={facets.size.map(s => ({ value: s, label: s }))}
+              value={getFacetValue("size")}
+              handleChange={(value) => setQueryParams("size", value)}
+            />
+          )}
+          {facets.seating.length > 0 && (
+            <FilterRadioGroup
+              title="SEATING CAPACITY"
+              items={facets.seating.map(s => ({ value: String(s), label: String(s) }))}
+              value={getFacetValue("seating")}
+              handleChange={(value) => setQueryParams("seating", value)}
+            />
+          )}
+
+          <div className="text-center text-stone-900 text-[11px] font-normal leading-normal">RESULTS ({totalResults})</div>
         </div>
-        
+
         <div className="flex items-center" style={{ flex: '0 0 auto' }}>
-          <button type="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" className="flex items-center text-[11px] font-normal leading-normal" role="combobox" aria-label="Selected sort: Featured ">
-            <p className="mr-[28px] !flex cursor-pointer select-none items-center !uppercase sm:!mr-1 md:!mr-0">sort:</p>
-            <span style={{ marginLeft: '7px', textTransform: 'uppercase', cursor: 'pointer' }}>Featured</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" className="inline-block !h-4 !w-4 text-base rotate-90" aria-label="" aria-haspopup="true" style={{ fontSize: '13px', marginLeft: '3px' }}>
-              <path d="M6 4L10 8L6 12" stroke="black" strokeWidth="0.75"></path>
-            </svg>
-          </button>
+          <FilterRadioGroup
+            title="sort:"
+            items={sortOptions}
+            value={sort}
+            handleChange={(value) => setQueryParams("sort", value)}
+          />
           <button onClick={() => setViewMode(3)} aria-label="Three column view" style={{ padding: '0px', marginLeft: '30px' }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" className="h-[14px] w-[14px] cursor-pointer p-0 !transition-all !duration-500 !ease-in-out" data-active={viewMode === 3}>
               <rect width="3.33232" height="3.33232" fill={viewMode === 3 ? 'currentColor' : '#999999'}></rect>

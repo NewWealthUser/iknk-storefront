@@ -12,8 +12,12 @@ type SortProductsProps = {
 
 const sortOptions = [
   {
-    value: "created_at",
-    label: "Latest Arrivals",
+    value: "featured",
+    label: "Featured",
+  },
+  {
+    value: "newest", // This value will be mapped to "created_at" in catalog.ts
+    label: "Newest",
   },
   {
     value: "price_asc",
@@ -31,7 +35,7 @@ const SortProducts = ({
   setQueryParams,
 }: SortProductsProps) => {
   const handleChange = (value: SortOptions) => {
-    setQueryParams("sortBy", value)
+    setQueryParams("sort", value) // Changed from 'sortBy' to 'sort' to match URL param convention
   }
 
   return (

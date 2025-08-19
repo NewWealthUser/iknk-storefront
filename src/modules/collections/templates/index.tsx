@@ -7,22 +7,20 @@ import PaginatedProducts from "@modules/store/templates/paginated-products"
 import { HttpTypes } from "@medusajs/types"
 
 export default function CollectionTemplate({
-  sortBy,
   collection,
-  page,
+  searchParams, // Receive searchParams
   countryCode,
 }: {
-  sortBy?: SortOptions
   collection: HttpTypes.StoreCollection
-  page?: string
+  searchParams: URLSearchParams // Define searchParams type
   countryCode: string
 }) {
-  const pageNumber = page ? parseInt(page) : 1
-  const sort = sortBy || "created_at"
+  const sortBy = (searchParams.get("sort") || "featured") as SortOptions; // Get sort from searchParams
+  const page = parseInt(searchParams.get("page") || "1"); // Extract page from searchParams
 
   return (
     <div className="flex flex-col small:flex-row small:items-start py-6 content-container">
-      <RefinementList sortBy={sort} />
+      <RefinementList sortBy={sortBy} />
       <div className="w-full">
         <div className="mb-8 text-2xl-semi">
           <h1>{collection.title}</h1>
@@ -35,10 +33,11 @@ export default function CollectionTemplate({
           }
         >
           <PaginatedProducts
-            sortBy={sort}
-            page={pageNumber}
+            sortBy={sortBy}
             collectionId={collection.id}
+            searchParams={searchParams} // Pass searchParams
             countryCode={countryCode}
+            page={page} // Pass page
           />
         </Suspense>
       </div>

@@ -1,70 +1,42 @@
-import { listProductsWithSort } from "@lib/data/products"
-import { getRegion } from "@lib/data/regions"
+import { fetchProductsForListing } from "@lib/catalog"
 import ProductPreview from "@modules/products/components/product-preview"
 import { Pagination } from "@modules/store/components/pagination"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import { getRegion } from "@lib/data/regions" // Import getRegion
 
-const PRODUCT_LIMIT = 12
-
-type PaginatedProductsParams = {
-  limit: number
-  collection_id?: string[]
-  category_id?: string[]
-  id?: string[]
-  order?: string
-}
-
-export default async function PaginatedProducts({
-  sortBy,
-  page,
-  collectionId,
-  categoryId,
-  productsIds,
-  countryCode,
-}: {
+type PaginatedProductsProps = {
   sortBy?: SortOptions
-  page: number
+  page: number // Ensure page is always passed
   collectionId?: string
   categoryId?: string
   productsIds?: string[]
   countryCode: string
-}) {
-  const queryParams: PaginatedProductsParams = {
-    limit: 12,
-  }
+  searchParams: URLSearchParams
+}
 
-  if (collectionId) {
-    queryParams["collection_id"] = [collectionId]
-  }
-
-  if (categoryId) {
-    queryParams["category_id"] = [categoryId]
-  }
-
-  if (productsIds) {
-    queryParams["id"] = productsIds
-  }
-
-  if (sortBy === "created_at") {
-    queryParams["order"] = "created_at"
-  }
-
-  const region = await getRegion(countryCode)
+export default async function PaginatedProducts({
+  sortBy,
+  collectionId,
+  categoryId,
+  productsIds,
+  countryCode,
+  searchParams,
+}: PaginatedProductsProps) {
+  const page = parseInt(searchParams.get("page") || "1"); // Extract page from searchParams
+  const region = await getRegion(countryCode); // Fetch region
 
   if (!region) {
-    return null
+    return null; // Handle case where region is not found
   }
 
-  let {
-    response: { products, count },
-  } = await listProductsWithSort({
-    page,
-    queryParams,
-    sortBy,
-    countryCode,
+  const { items: products, pagination } = await fetchProductsForListing({
+    collectionId,
+    searchParams,
   })
 
-  const totalPages = Math.ceil(count / PRODUCT_LIMIT)
+  if (!products) {
+    return null
+  }
 
   return (
     <>
@@ -75,16 +47,16 @@ export default async function PaginatedProducts({
         {products.map((p) => {
           return (
             <li key={p.id}>
-              <ProductPreview product={p} region={region} />
+              <ProductPreview product={p} region={region} /> {/* Pass region */}
             </li>
           )
         })}
       </ul>
-      {totalPages > 1 && (
+      {pagination.totalPages > 1 && (
         <Pagination
           data-testid="product-pagination"
-          page={page}
-          totalPages={totalPages}
+          page={pagination.page}
+          totalPages={pagination.totalPages}
         />
       )}
     </>
