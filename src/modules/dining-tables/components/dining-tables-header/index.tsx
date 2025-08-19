@@ -16,7 +16,7 @@ const DiningTablesHeader = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-end gap-x-8 gap-y-2 pb-12"> {/* Filter/Sort row */}
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 pb-12"> {/* Filter/Sort row */}
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           {/* SALE filter with checkbox */}
           <div className="flex items-center gap-1">
