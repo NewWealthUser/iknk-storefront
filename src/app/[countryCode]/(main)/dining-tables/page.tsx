@@ -1,26 +1,12 @@
 import React from 'react';
+import DiningTablesHeader from '@modules/dining-tables/components/dining-tables-header';
 
 const DiningTablesPage = () => {
   return (
-    <main id="main" className="jss18 px-16" style={{ flex: '1 1 0%', position: 'relative', zIndex: 1099, minHeight: '80vh', paddingTop: '0px' }}>
+    <main id="main" className="jss18" style={{ flex: '1 1 0%', position: 'relative', zIndex: 1099, minHeight: '80vh', paddingTop: '0px' }}>
       <div style={{ display: 'none' }}>SSR V1</div>
-      <div className="MuiContainer-root jss6665 mt-[32px] sm:mt-[52px] md:mt-[44px] lg:mt-[44px] xl:mt-[44px] css-14v0rba">
-        <div className="w-full" style={{ paddingBottom: '8px', alignItems: 'center' }}>
-          <div className="flex justify-between items-center w-full">
-            <div className="flex flex-wrap items-baseline text-left">
-              <h1 className="tailwind-typography-root jss6664 jss15438 tailwind-typography-h1 text-[27px]" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography">Dining Tables</h1>
-            </div>
-            <div>
-              <p className="tailwind-typography-root jss6684 tailwind-typography-body1" id="tailwind-rh-tailwind-typography" data-testid="rh-tailwind-typography">
-                <a className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-3ctrh9" id="component-rh-link" href="/us/en/membership" data-analytics-id="link" aria-label="Link" data-testid="rh-membership-link-pg" style={{ display: 'inline', color: 'rgb(0, 0, 0)', fontSize: '13px' }}>
-                  <span className="font-primary-rhthin underline">RH MEMBERS PROGRAM</span>
-                </a> SAVE 30% ON EVERYTHING*
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="MuiContainer-root lg:pb-13.5 xl:pb-18.75 pb-7 sm:pb-9 md:pb-12 css-14v0rba">
+      <DiningTablesHeader /> {/* New responsive header component */}
+      <div className="MuiContainer-root lg:pb-13.5 xl:pb-18.75 pb-7 sm:pb-9 md:pb-12 css-14v0rba px-16"> {/* Added px-16 here for consistency */}
         <div className="flex !pt-[15px] items-center justify-center">
           <div className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center jss6686" id="component-refine-menu-dropdown">
             <div className="w-auto flex h-6 flex-wrap items-center overflow-hidden" tabIndex={0} role="group" aria-label="Filter by">
@@ -129,7 +115,7 @@ const DiningTablesPage = () => {
           </div>
         </div>
       </div>
-      <div className="MuiContainer-root css-14v0rba">
+      <div className="MuiContainer-root css-14v0rba px-16"> {/* Added px-16 here for consistency */}
         <div id="component-product-grid" className="relative">
           <div className="inline-flex mb-8 md:mb-9 lg:mb-[60px] flex-wrap gap-x-4 sm:gap-x-8 md:gap-x-10 gap-y-7 sm:gap-y-12 md:gap-y-[60px] lg:gap-y-20 xl:gap-y-24 w-full">
             <div id="RH__null__0" className="productVisible mb-3 flex w-full justify-center" style={{ width: '30.3%' }}>
@@ -212,7 +198,7 @@ const DiningTablesPage = () => {
                               <img src="//media.restorationhardware.com/is/image/rhis/Swatch_OD_Teak_WeatheredGrey_O?$63sq$" loading="lazy" alt="Weathered Teak " className="h-full w-full opacity-1" />
                             </div>
                           </button>
-                          <div className="!mt-[3px] !h-[0.03rem] !border-black !px-[1px] !py-0 opacity-0" style={{ border: '0.5px solid' }}></div>
+                          <div className="!mt-[3px] !h-[0.03rem] !border-black !px-[1px] !py-0" style={{ border: '0.5px solid' }}></div>
                         </div>
                       </div>
                     </div>
