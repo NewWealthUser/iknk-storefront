@@ -18,7 +18,7 @@ const DiningTablesHeader = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2"> {/* Filter/Sort row */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pl-10 pr-10 pb-12"> {/* Filter/Sort row with new padding */}
         {/* SALE filter with checkbox */}
         <div className="flex items-center gap-1">
           <Checkbox id="sale-filter" name="sale-filter" checked={false} onChange={() => {}} />
