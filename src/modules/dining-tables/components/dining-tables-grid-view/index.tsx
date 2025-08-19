@@ -8,10 +8,10 @@ const DiningTablesGridView = () => {
   const [viewMode, setViewMode] = useState(3); // Default to 3 columns
 
   const gridClasses = clx(
-    "grid w-full gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12",
+    "grid w-full gap-x-8 gap-y-12",
     {
-      "grid-cols-5": viewMode === 3,
-      "grid-cols-4": viewMode === 2,
+      "grid-cols-3": viewMode === 3,
+      "grid-cols-2": viewMode === 2,
     }
   );
 
