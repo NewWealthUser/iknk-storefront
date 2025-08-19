@@ -21,10 +21,11 @@ export async function medusaGet<T>(
   path: string,
   params?: Record<string, any>
 ): Promise<T> {
-  const baseUrl = process.env.NEXT_PUBLIC_MEDUSA_URL;
+  // Use MEDUSA_BACKEND_URL for consistency with the SDK configuration
+  const baseUrl = process.env.MEDUSA_BACKEND_URL;
 
   if (!baseUrl) {
-    throw new Error("The NEXT_PUBLIC_MEDUSA_URL environment variable is not set.");
+    throw new Error("The MEDUSA_BACKEND_URL environment variable is not set.");
   }
 
   let url = `${baseUrl}${path}`;
