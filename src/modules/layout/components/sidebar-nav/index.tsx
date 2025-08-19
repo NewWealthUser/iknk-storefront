@@ -5,13 +5,30 @@ import LocalizedClientLink from '@modules/common/components/localized-client-lin
 import X from '@modules/common/icons/x';
 import ChevronDown from '@modules/common/icons/chevron-down';
 
+type NavItem = {
+  title: string;
+  type?: "collection" | "category";
+  handle?: string;
+  children?: NavItem[];
+};
+
 type SidebarNavProps = {
   isOpen: boolean;
   close: () => void;
-  navItems: { title: string; children?: string[] }[];
+  navItems: NavItem[];
 };
 
 const SidebarNav = ({ isOpen, close, navItems }: SidebarNavProps) => {
+  const getHref = (item: NavItem) => {
+    if (item.type === "collection" && item.handle) {
+      return `/collections/${item.handle}`;
+    }
+    if (item.type === "category" && item.handle) {
+      return `/categories/${item.handle}`;
+    }
+    return `/${item.title.toLowerCase().replace(/\s+/g, '-')}`;
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-50 md:hidden" onClose={close}>
@@ -53,7 +70,7 @@ const SidebarNav = ({ isOpen, close, navItems }: SidebarNavProps) => {
                       <li key={item.title}>
                         {!item.children ? (
                           <LocalizedClientLink
-                            href={`/${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                            href={getHref(item)}
                             className="text-lg text-gray-700 hover:text-black"
                             onClick={close}
                           >
@@ -84,13 +101,13 @@ const SidebarNav = ({ isOpen, close, navItems }: SidebarNavProps) => {
                                 >
                                   <Disclosure.Panel as="ul" className="pl-4 pt-2 space-y-2">
                                     {item.children?.map((child) => (
-                                      <li key={child}>
+                                      <li key={child.title}>
                                         <LocalizedClientLink
-                                          href={`/${child.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                                          href={getHref(child)}
                                           className="text-gray-600 hover:text-black"
                                           onClick={close}
                                         >
-                                          {child}
+                                          {child.title}
                                         </LocalizedClientLink>
                                       </li>
                                     ))}

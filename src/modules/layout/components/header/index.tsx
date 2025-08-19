@@ -3,6 +3,13 @@ import React, { useState } from 'react';
 import LocalizedClientLink from '@modules/common/components/localized-client-link';
 import SidebarNav from '../sidebar-nav';
 
+type NavItem = {
+  title: string;
+  type?: "collection" | "category";
+  handle?: string;
+  children?: NavItem[];
+};
+
 const Header = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -30,27 +37,38 @@ const Header = () => {
 
   const logoFill = isHovered ? 'black' : 'white';
 
-  const navItems = [
+  const navItems: NavItem[] = [
     {
       title: "Shop By Room",
       children: [
-        "Living Room", "Dining Room", "Outdoor Lounge", "Patio / Poolside",
-        "Bar & Café", "Balcony & Compact Spaces", "Entertaining Spaces", "Reading Nook"
+        { title: "Living Room", type: "collection", handle: "living-room" },
+        { title: "Dining Room", type: "collection", handle: "dining-room" },
+        { title: "Outdoor Lounge", type: "collection", handle: "outdoor-lounge" },
+        { title: "Patio / Poolside", type: "collection", handle: "patio-poolside" },
+        { title: "Bar & Café", type: "collection", handle: "bar-cafe" },
+        { title: "Balcony & Compact Spaces", type: "collection", handle: "balcony-compact-spaces" },
+        { title: "Entertaining Spaces", type: "collection", handle: "entertaining-spaces" },
+        { title: "Reading Nook", type: "collection", handle: "reading-nook" }
       ]
     },
     {
       title: "Tables",
       children: [
-        "Dining Tables", "Coffee Tables", "Side Tables", "Café Tables", "Bar Tables", "Table Covers"
+        { title: "Dining Tables", type: "collection", handle: "dining-tables" },
+        { title: "Coffee Tables", type: "collection", handle: "coffee-tables" },
+        { title: "Side Tables", type: "collection", handle: "side-tables" },
+        { title: "Café Tables", type: "collection", handle: "cafe-tables" },
+        { title: "Bar Tables", type: "collection", handle: "bar-tables" },
+        { title: "Table Covers", type: "collection", handle: "table-covers" }
       ]
     },
-    { title: "Seating" },
-    { title: "Lounging" },
-    { title: "Umbrellas" },
-    { title: "Accessories" },
-    { title: "Materials" },
-    { title: "SALE" },
-    { title: "Ikonik" }
+    { title: "Seating", type: "collection", handle: "seating" },
+    { title: "Lounging", type: "collection", handle: "lounging" },
+    { title: "Umbrellas", type: "collection", handle: "umbrellas" },
+    { title: "Accessories", type: "collection", handle: "accessories" },
+    { title: "Materials", type: "collection", handle: "materials" },
+    { title: "SALE", type: "collection", handle: "sale" },
+    { title: "Ikonik", type: "collection", handle: "ikonik" }
   ];
 
   return (
@@ -159,7 +177,10 @@ const Header = () => {
                 {navItems.map((item) => (
                   <div key={item.title} className="relative group">
                     <div className="mt-0 flex pt-0 no-underline underline-offset-[5px] hover:underline hover:text-white">
-                      <button type="button" className="p-0 text-black">
+                      <LocalizedClientLink
+                        href={item.type === "collection" ? `/collections/${item.handle}` : item.type === "category" ? `/categories/${item.handle}` : `/${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="p-0 text-black"
+                      >
                         <span className="p-0 flex items-end" style={{ lineHeight: 'inherit' }}>
                           <span
                             className="uppercase h-[18px] font-rhc font-thin leading-normal tracking-wider md:text-[14px] lg:text-base"
@@ -168,18 +189,18 @@ const Header = () => {
                             {item.title}
                           </span>
                         </span>
-                      </button>
+                      </LocalizedClientLink>
                     </div>
                     {item.children && (
                       <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max hidden group-hover:block bg-white text-black p-4 rounded-md shadow-lg z-50">
                         <ul className="space-y-2">
                           {item.children.map((child) => (
-                            <li key={child}>
+                            <li key={child.title}>
                               <LocalizedClientLink
-                                href={`/${child.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                                href={child.type === "collection" ? `/collections/${child.handle}` : child.type === "category" ? `/categories/${child.handle}` : `/${child.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                                 className="block text-sm text-gray-700 hover:text-black hover:bg-gray-100 p-2 rounded"
                               >
-                                {child}
+                                {child.title}
                               </LocalizedClientLink>
                             </li>
                           ))}

@@ -3,7 +3,7 @@ import { formatMoney } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
 
 type Variant = HttpTypes.StoreProductVariant
-type Product = HttpTypes.StoreProduct & { variants?: Variant[] }
+type Product = HttpTypes.StoreProduct & { variants?: Variant[] | null }
 
 function minMaxPrice(product: Product) {
   const prices: { amount: number; currency: string }[] = []

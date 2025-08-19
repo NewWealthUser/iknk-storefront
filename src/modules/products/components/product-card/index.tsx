@@ -5,8 +5,8 @@ import Image from "next/image"
 import { HttpTypes } from "@medusajs/types"
 
 type Product = HttpTypes.StoreProduct & {
-  images?: HttpTypes.StoreProductImage[]
-  variants?: HttpTypes.StoreProductVariant[]
+  images?: HttpTypes.StoreProductImage[] | null
+  variants?: HttpTypes.StoreProductVariant[] | null
 }
 
 export default function ProductCard({ product }: { product: Product }) {
